@@ -4,10 +4,10 @@ INSERT INTO docs (code, version, name) VALUES (23, 0, 'Свидетельств�
 INSERT INTO docs (code, version, name) VALUES (3, 0, 'Свидетельство о рождении');
 INSERT INTO docs (code, version, name) VALUES (10, 0, 'Паспорт иностранного гражданина');
 
-INSERT INTO countries (code, version, name) VALUES (643, 0, 'Россия');
-INSERT INTO countries (code, version, name) VALUES (840, 0, 'США');
-INSERT INTO countries (code, version, name) VALUES (276, 0, 'Германия');
-INSERT INTO countries (code, version, name) VALUES (826, 0, 'Соединенное королевство');
+INSERT INTO countrie (code, version, name) VALUES (643, 0, 'Россия');
+INSERT INTO countrie (code, version, name) VALUES (840, 0, 'США');
+INSERT INTO countrie (code, version, name) VALUES (276, 0, 'Германия');
+INSERT INTO countrie (code, version, name) VALUES (826, 0, 'Соединенное королевство');
 
 INSERT INTO organization (id, version, name, full_name, inn, kpp, address, phone, is_active)
 VALUES (1, 0, 'Некая организация 1', 'организация ООО"Некая организация 1"', 1234567890, '1234AZ01', 'ул.Цюрупы, 16', 555555, 1);

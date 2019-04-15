@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS docs (
     name                VARCHAR(200)            COMMENT 'Название документа',
 );
 
-CREATE TABLE IF NOT EXISTS user_docs (
+CREATE TABLE IF NOT EXISTS users_docs (
     id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY,
     version             INTEGER NOT NULL        COMMENT 'Служебное поле hibernate',
     user_id             BIGINT                  COMMENT 'Владелец документа',
@@ -57,17 +57,17 @@ CREATE TABLE IF NOT EXISTS user (
     middle_name         VARCHAR(30)             COMMENT 'Отчество',
     position            VARCHAR(50) NOT NULL    COMMENT 'Должность',
     phone               VARCHAR(15)             COMMENT 'Телефон юзера',
-    citizenship_code    INTEGER                 COMMENT 'Гражданство - код'
+    citizenship_id      BIGINT                  COMMENT 'Гражданство - код'
 );
 COMMENT ON TABLE user IS 'Юзер';
 
 CREATE INDEX IX_office_id ON office (org_id);
 ALTER TABLE office ADD FOREIGN KEY (org_id) REFERENCES organization(id);
 
-CREATE INDEX IX_user_docs ON user_docs (user_id);
+CREATE INDEX IX_users_docs ON users_docs (user_id);
 ALTER TABLE user ADD FOREIGN KEY (user_id) REFERENCES user(id);
 
 CREATE INDEX IX_user_office_id ON user (office_id);
 ALTER TABLE user ADD FOREIGN KEY (office_id) REFERENCES office(id);
-CREATE INDEX IX_user_citizenship_code ON user (citizenship_code);
-ALTER TABLE user ADD FOREIGN KEY (citizenship_code) REFERENCES countries(code);
+CREATE INDEX IX_user_citizenship_id ON user (citizenship_id);
+ALTER TABLE user ADD FOREIGN KEY (citizenship_id) REFERENCES countries(id);
