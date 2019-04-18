@@ -41,9 +41,6 @@ public class User {
     @JoinColumn(name = "id")
     private Countrie citizenship;
 
-    public User() {
-    }
-
     public Long getId() {
         return id;
     }

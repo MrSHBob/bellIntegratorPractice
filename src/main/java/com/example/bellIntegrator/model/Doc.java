@@ -20,9 +20,6 @@ public class Doc {
     @Column(name = "name", length = 200)
     private String name;
 
-    public Doc() {
-    }
-
     public Long getId() {
         return id;
     }

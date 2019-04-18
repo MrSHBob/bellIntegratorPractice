@@ -4,11 +4,13 @@ import com.example.bellIntegrator.model.Countrie;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class CountrieDaoImpl implements CountrieDao {
 
+    //@PersistenceContext                                   нужна ли эта аннотация
     private final EntityManager em;
 
     @Autowired

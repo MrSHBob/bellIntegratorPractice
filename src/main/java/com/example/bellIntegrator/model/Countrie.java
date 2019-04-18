@@ -20,9 +20,6 @@ public class Countrie {
     @Column(name = "name", length = 200)
     private String name;
 
-    public Countrie() {
-    }
-
     public Long getId() {
         return id;
     }

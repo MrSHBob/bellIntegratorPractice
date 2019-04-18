@@ -1,5 +1,7 @@
 package com.example.bellIntegrator.model;
 
+import org.springframework.data.jpa.repository.Temporal;
+
 import javax.persistence.*;
 import java.time.Instant;
 
@@ -29,13 +31,11 @@ public class UsersDoc {
     private String docNumber;
 
     @Column(name = "doc_date")
+//    @Temporal(TemporalType.DATE)                      раскоментить, если потребуется
     private Instant docDate;
 
     @Column(name = "is_identified")
     private Boolean isIdentified;
-
-    public UsersDoc() {
-    }
 
     public Long getId() {
         return id;

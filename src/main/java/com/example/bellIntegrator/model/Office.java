@@ -30,9 +30,6 @@ public class Office {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    public Office() {
-    }
-
     public Long getId() {
         return id;
     }

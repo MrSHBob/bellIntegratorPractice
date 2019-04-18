@@ -1,14 +1,14 @@
 CREATE TABLE IF NOT EXISTS docs (
-    id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY,
+    id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
     code                INTEGER NOT NULL        COMMENT 'Kод документа',
     version             INTEGER NOT NULL        COMMENT 'Служебное поле hibernate',
     name                VARCHAR(200)            COMMENT 'Название документа',
 );
 
 CREATE TABLE IF NOT EXISTS users_docs (
-    id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY,
+    id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
     version             INTEGER NOT NULL        COMMENT 'Служебное поле hibernate',
-    user_id             BIGINT                  COMMENT 'Владелец документа',
+    user_id             BIGINT NOT NULL                  COMMENT 'Владелец документа',
     name                VARCHAR(200)            COMMENT 'Название документа',
     doc_code            INTEGER                 COMMENT 'Код документа',
     doc_number          VARCHAR(15)             COMMENT 'Серия и номер',
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS users_docs (
 );
 
 CREATE TABLE IF NOT EXISTS countries (
-    id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY,
+    id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
     code                INTEGER NOT NULL        COMMENT 'Код страны',
     version             INTEGER NOT NULL        COMMENT 'Служебное поле hibernate',
     name                VARCHAR(200)            COMMENT 'Название документа',
