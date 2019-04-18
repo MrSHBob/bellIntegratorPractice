@@ -1,5 +1,7 @@
 package com.example.bellIntegrator.view;
 
+import com.example.bellIntegrator.model.Organization;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -9,7 +11,7 @@ public class OfficeView {
     public String id;
 
     @NotEmpty
-    public String orgId;
+    public Organization org;
 
     @Size(max = 50)
     public String name;
@@ -24,7 +26,7 @@ public class OfficeView {
 
     @Override
     public String toString() {
-        return"{id:" + id + ";orgId:" + orgId + ";name:" + name + ";address:" + address +
+        return"{id:" + id + ";orgId:" + org.getId() + ";name:" + name + ";address:" + address +
                 ";phone:" + phone + ";isActive:" + isActive + "}";
     }
 }

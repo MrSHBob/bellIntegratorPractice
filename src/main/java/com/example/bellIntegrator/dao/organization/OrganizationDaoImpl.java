@@ -2,11 +2,13 @@ package com.example.bellIntegrator.dao.organization;
 
 import com.example.bellIntegrator.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Repository
 public class OrganizationDaoImpl implements OrganizationDao {
 
     private final EntityManager em;

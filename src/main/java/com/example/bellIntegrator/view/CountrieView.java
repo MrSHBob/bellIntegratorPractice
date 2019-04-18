@@ -9,7 +9,7 @@ public class CountrieView {
     public String id;
 
     @NotEmpty
-    public String code;
+    public Integer code;
 
     @Size(max = 200)
     @NotEmpty

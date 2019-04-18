@@ -3,11 +3,13 @@ package com.example.bellIntegrator.dao.office;
 import com.example.bellIntegrator.model.Doc;
 import com.example.bellIntegrator.model.Office;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Repository
 public class OfficeDaoImpl implements OfficeDao {
 
     private final EntityManager em;

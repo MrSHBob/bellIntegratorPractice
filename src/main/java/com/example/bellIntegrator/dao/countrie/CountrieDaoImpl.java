@@ -2,12 +2,14 @@ package com.example.bellIntegrator.dao.countrie;
 
 import com.example.bellIntegrator.model.Countrie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Repository
 public class CountrieDaoImpl implements CountrieDao {
 
     //@PersistenceContext                                   нужна ли эта аннотация

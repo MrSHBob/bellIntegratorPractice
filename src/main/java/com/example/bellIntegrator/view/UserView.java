@@ -1,5 +1,7 @@
 package com.example.bellIntegrator.view;
 
+import com.example.bellIntegrator.model.Office;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -9,7 +11,7 @@ public class UserView {
     public String id;
 
     @NotEmpty(message = "office cannot be null")
-    public String officeId;
+    public Office office;
 
     @Size(max = 30)
     @NotEmpty(message = "first name cannot be null")
@@ -32,7 +34,7 @@ public class UserView {
 
     @Override
     public String toString() {
-        return"{id:" + id + ";officeId:" + officeId + ";firstName:" + firstName +
+        return"{id:" + id + ";officeId:" + office.getId() + ";firstName:" + firstName +
                 ";secondName:" + secondName + ";middleName:" + middleName +
                 ";position:" + position + ";phone:" + phone + ";citizenshipId:" + citizenshipId + "}";
     }
