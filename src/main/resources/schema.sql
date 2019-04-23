@@ -61,13 +61,13 @@ CREATE TABLE IF NOT EXISTS user (
 );
 COMMENT ON TABLE user IS 'Юзер';
 
-CREATE INDEX IX_office_id ON office (org_id);
+CREATE INDEX IF NOT EXISTS IX_office_id ON office (org_id);
 ALTER TABLE office ADD FOREIGN KEY (org_id) REFERENCES organization(id);
 
-CREATE INDEX IX_users_docs ON users_docs (user_id);
-ALTER TABLE user ADD FOREIGN KEY (user_id) REFERENCES user(id);
+CREATE INDEX IF NOT EXISTS IX_users_docs ON users_docs (user_id);
+ALTER TABLE users_docs ADD FOREIGN KEY (user_id) REFERENCES user(id);
 
-CREATE INDEX IX_user_office_id ON user (office_id);
+CREATE INDEX IF NOT EXISTS IX_user_office_id ON user (office_id);
 ALTER TABLE user ADD FOREIGN KEY (office_id) REFERENCES office(id);
-CREATE INDEX IX_user_citizenship_id ON user (citizenship_id);
+CREATE INDEX IF NOT EXISTS IX_user_citizenship_id ON user (citizenship_id);
 ALTER TABLE user ADD FOREIGN KEY (citizenship_id) REFERENCES countries(id);

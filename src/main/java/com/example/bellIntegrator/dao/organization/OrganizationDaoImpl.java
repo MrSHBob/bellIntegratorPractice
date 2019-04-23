@@ -30,6 +30,12 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
+    public List<Organization> loadByName( String name) {
+        TypedQuery<Organization> query = em.createQuery("SELECT o FROM Organization o where o.name = '" + name + "'", Organization.class);
+        return query.getResultList();
+    }
+
+    @Override
     public void save(Organization organization) {
         em.persist(organization);
     }

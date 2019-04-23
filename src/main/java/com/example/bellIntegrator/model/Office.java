@@ -1,6 +1,7 @@
 package com.example.bellIntegrator.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "office")
@@ -13,6 +14,10 @@ public class Office {
 
     @Version
     private Integer version;
+
+    /*@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "office_id")
+    private List<User> users;*/
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "org_id", nullable = false)

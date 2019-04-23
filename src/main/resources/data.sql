@@ -4,10 +4,10 @@ INSERT INTO docs (code, version, name) VALUES (23, 0, 'Свидетельств�
 INSERT INTO docs (code, version, name) VALUES (3, 0, 'Свидетельство о рождении');
 INSERT INTO docs (code, version, name) VALUES (10, 0, 'Паспорт иностранного гражданина');
 
-INSERT INTO countrie (code, version, name) VALUES (643, 0, 'Россия');
-INSERT INTO countrie (code, version, name) VALUES (840, 0, 'США');
-INSERT INTO countrie (code, version, name) VALUES (276, 0, 'Германия');
-INSERT INTO countrie (code, version, name) VALUES (826, 0, 'Соединенное королевство');
+INSERT INTO countries (code, version, name) VALUES (643, 0, 'Россия');
+INSERT INTO countries (code, version, name) VALUES (840, 0, 'США');
+INSERT INTO countries (code, version, name) VALUES (276, 0, 'Германия');
+INSERT INTO countries (code, version, name) VALUES (826, 0, 'Соединенное королевство');
 
 INSERT INTO organization (id, version, name, full_name, inn, kpp, address, phone, is_active)
 VALUES (1, 0, 'Некая организация 1', 'организация ООО"Некая организация 1"', 1234567890, '1234AZ01', 'ул.Цюрупы, 16', 555555, 1);
@@ -19,11 +19,21 @@ INSERT INTO office (id, version, org_id, name, address, phone, is_active)
 VALUES (2, 0, 1, 'офис 2', 'ул.Некоторая, 12', 666666, 1);
 
 INSERT INTO user (
-id, version, office_id, first_name, second_name, middle_name, position, phone, doc_code, doc_number, doc_date, citizenship_code, is_identified
+id, version, office_id, first_name, second_name, middle_name, position, phone, citizenship_id
 ) VALUES (
-1, 0, 1, 'Иван', 'Иванов', 'Иванович', 'менеджер', 9871231212, 21, 6303123123, DATE '2006-10-11', 643, 1);
+1, 0, 1, 'Иван', 'Иванов', 'Иванович', 'менеджер', 9871231212, 1);
 INSERT INTO user (
-id, version, office_id, first_name, second_name, middle_name, position, phone, doc_code, doc_number, doc_date, citizenship_code, is_identified
+id, version, office_id, first_name, second_name, middle_name, position, phone, citizenship_id
 ) VALUES (
-2, 0, 1, 'Петр', 'Петров', 'Петрович', 'менеджер', 9871234545, 21, 6303321321, DATE '2001-01-01', 643, 1);
-*/
+2, 0, 1, 'Петр', 'Петров', 'Петрович', 'менеджер', 9871234545, 1);
+
+INSERT INTO users_docs (
+id, version, user_id, name, doc_code, doc_number, doc_date, is_identified
+) VALUES (
+1, 0, 1, 'Паспорт', 21, '6303123123', DATE '2006-10-11', 1
+);
+INSERT INTO users_docs (
+id, version, user_id, name, doc_code, doc_number, doc_date, is_identified
+) VALUES (
+2, 0, 2, 'Паспорт', 21, '6303321321', DATE '2001-01-01', 1
+);*/

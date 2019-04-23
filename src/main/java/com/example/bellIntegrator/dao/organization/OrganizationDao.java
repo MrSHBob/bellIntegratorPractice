@@ -11,5 +11,7 @@ public interface OrganizationDao {
 
     Organization loadById(Long id);
 
+    List<Organization> loadByName(String name);
+
     void save(Organization organization);
 }

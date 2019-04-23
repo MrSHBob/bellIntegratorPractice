@@ -12,4 +12,6 @@ public interface OrganizationService {
     void add (@Valid OrganizationView organization);
 
     List<OrganizationView> organizations();
+
+    List<OrganizationView> organizationsByName(String name);
 }

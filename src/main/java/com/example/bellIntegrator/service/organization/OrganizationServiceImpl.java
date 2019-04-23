@@ -41,4 +41,11 @@ public class OrganizationServiceImpl implements OrganizationService {
         List<Organization> all = dao.all();
         return mapperFacade.mapAsList(all, OrganizationView.class);
     }
+
+    @Override
+    @Transactional
+    public List<OrganizationView> organizationsByName(String name) {
+        List<Organization> organizations = dao.loadByName(name);
+        return mapperFacade.mapAsList(organizations, OrganizationView.class);
+    }
 }

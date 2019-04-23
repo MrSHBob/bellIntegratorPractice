@@ -9,14 +9,14 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private Long id;
 
     @Version
     private Integer version;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "office_id")
     private Office office;
 
     @Column(name = "first_name", length = 30, nullable = false)
@@ -38,7 +38,7 @@ public class User {
     private List<UsersDoc> usersDocs;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "citizenship_id")
     private Countrie citizenship;
 
     public Long getId() {
