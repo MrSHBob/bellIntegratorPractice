@@ -1,14 +1,12 @@
 package com.example.bellIntegrator.office.view;
 
-import com.example.bellIntegrator.organization.model.Organization;
-
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class OfficeViewListIn {
 
-    @NotEmpty
-    public Organization org;
+    @NotNull
+    public Long orgId;
 
     @Size(max = 50)
     public String name;
@@ -20,6 +18,6 @@ public class OfficeViewListIn {
 
     @Override
     public String toString() {
-        return"{orgId:" + org.getId() + ";name:" + name + ";phone:" + phone + ";isActive:" + isActive + "}";
+        return"{orgId:" + orgId + ";name:" + name + ";phone:" + phone + ";isActive:" + isActive + "}";
     }
 }

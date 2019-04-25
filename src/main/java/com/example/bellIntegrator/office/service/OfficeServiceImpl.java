@@ -3,6 +3,7 @@ package com.example.bellIntegrator.office.service;
 import com.example.bellIntegrator.office.dao.OfficeDao;
 import com.example.bellIntegrator.office.model.Office;
 import com.example.bellIntegrator.office.view.*;
+import com.example.bellIntegrator.organization.dao.OrganizationDao;
 import com.example.bellIntegrator.organization.model.Organization;
 import com.example.bellIntegrator.organization.service.OrganizationService;
 import com.example.bellIntegrator.other.mapper.MapperFacade;
@@ -17,20 +18,20 @@ import java.util.List;
 public class OfficeServiceImpl implements OfficeService {
     private final OfficeDao dao;
     private final MapperFacade mapperFacade;
+    private final OrganizationDao orgDao;
 
     @Autowired
-    public OfficeServiceImpl(OfficeDao dao, MapperFacade mapperFacade) {
+    public OfficeServiceImpl(OfficeDao dao, MapperFacade mapperFacade, OrganizationDao orgDao) {
         this.dao = dao;
         this.mapperFacade = mapperFacade;
+        this.orgDao = orgDao;
     }
 
     @Override
     @Transactional
     public void add(OfficeViewSave view) {
         Office office = new Office();
-        Organization org = new Organization();
-        org.setId(view.orgId);
-        office.setOrganization(org);
+        office.setOrganization(orgDao.loadById(view.orgId));
         office.setName(view.name);
         office.setAddress(view.address);
         office.setPhone(view.phone);
@@ -41,7 +42,7 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional
     public void update(@Valid OfficeViewUpdate view) {
-        Office office = new Office();
+        Office office = dao.loadById(view.id);
         office.setId(view.id);
         office.setName(view.name);
         office.setAddress(view.address);

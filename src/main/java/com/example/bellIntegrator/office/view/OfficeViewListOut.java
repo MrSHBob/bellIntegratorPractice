@@ -7,7 +7,6 @@ import javax.validation.constraints.Size;
 
 public class OfficeViewListOut {
 
-    @NotEmpty
     public String id;
 
     @Size(max = 50)

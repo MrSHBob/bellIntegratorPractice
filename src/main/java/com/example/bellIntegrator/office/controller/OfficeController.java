@@ -1,10 +1,7 @@
 package com.example.bellIntegrator.office.controller;
 
-import com.example.bellIntegrator.office.model.Office;
 import com.example.bellIntegrator.office.service.OfficeService;
 import com.example.bellIntegrator.office.view.*;
-import com.example.bellIntegrator.organization.view.OrganizationView;
-import com.example.bellIntegrator.organization.view.OrganizationViewUpdate;
 import com.example.bellIntegrator.other.view.DataView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,14 +24,14 @@ public class OfficeController {
 
     @PostMapping("/list")
     public String list (@RequestBody OfficeViewListIn view) {
-        List<OfficeViewListOut> views = officeService.officeByOrg(view.org.getId());
+        List<OfficeViewListOut> views = officeService.officeByOrg(view.orgId);
         DataView dataView = new DataView();
         dataView.data = views.toString();
         return dataView.toString();
     }
 
     @RequestMapping(value = "/{id:[\\d]+}", method = GET)
-    public String orgById (@PathVariable("id") Long id) {
+    public String officeById (@PathVariable("id") Long id) {
         OfficeViewGet view = officeService.officeById(id);
         DataView dataView = new DataView();
         dataView.data = view.toString();
