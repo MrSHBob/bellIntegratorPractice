@@ -1,5 +1,6 @@
 HELP.md
 /target/
+/.mvn/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -27,3 +28,7 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+
+h2_db.mv.db
+h2_db.trace.db
