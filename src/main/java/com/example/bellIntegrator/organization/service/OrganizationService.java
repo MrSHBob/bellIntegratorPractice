@@ -14,7 +14,7 @@ public interface OrganizationService {
 
     void update (@Valid OrganizationViewUpdate view);
 
-    List<OrganizationViewListOut> organizationsByName(String name);
+    List<OrganizationViewListOut> organizationsByName(String name, String inn);
 
     OrganizationView organizationsById(Long id);
 }

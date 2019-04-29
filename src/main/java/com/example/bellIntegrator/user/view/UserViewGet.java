@@ -5,10 +5,11 @@ import com.example.bellIntegrator.userDoc.model.UsersDoc;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.time.Instant;
 
 public class UserViewGet {
 
-    public String id;
+    public Long id;
 
     public String firstName;
 
@@ -17,17 +18,26 @@ public class UserViewGet {
     public String middleName;
 
     public String position;
-                                                //вообще все доделать!
+
     public String phone;
 
-    public UsersDoc userDoc;
+    public String docName;
 
-    public String citizenshipId;
+    public String docNumber;
+
+    public Instant docDate;
+
+    public String citizenshipName;
+
+    public String citizenshipCode;
+
+    public Boolean isIdentified;
 
     @Override
     public String toString() {
-        return"{id:" + id + ";firstName:" + firstName +
-                ";secondName:" + secondName + ";middleName:" + middleName +
-                ";position:" + position + ";phone:" + phone + ";citizenshipId:" + citizenshipId + "}";
+        return"{id:" + id + ";firstName:" + firstName + ";secondName:" + secondName + ";middleName:" + middleName +
+                ";position:" + position + ";phone:" + phone + ";docName:" + docName +";docNumber:" + docNumber +
+                ";docDate:" + docDate +";citizenshipName:" + citizenshipName +";citizenshipCode:" + citizenshipCode +
+                ";isIdentified:" + isIdentified + "}";
     }
 }

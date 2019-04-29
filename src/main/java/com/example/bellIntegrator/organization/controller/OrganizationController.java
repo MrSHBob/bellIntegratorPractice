@@ -23,9 +23,9 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
 
-    @PostMapping("/list")                 //Нет данных в базе... почему?
-    public String list (@RequestBody OrganizationViewListIn orgView) {
-        List<OrganizationViewListOut> orgViews = organizationService.organizationsByName(orgView.name);
+    @PostMapping("/list")
+    public String list (@RequestBody OrganizationViewListIn view) {
+        List<OrganizationViewListOut> orgViews = organizationService.organizationsByName(view.name, view.inn);
         DataView dataView = new DataView();
         dataView.data = orgViews.toString();
         return dataView.toString();
@@ -40,7 +40,7 @@ public class OrganizationController {
     }
 
     @PostMapping("/update")
-    public String update(@RequestBody OrganizationViewUpdate view) {                //do not work! it is just like save((
+    public String update(@RequestBody OrganizationViewUpdate view) {
         organizationService.update(view);
         DataView dataView = new DataView();
         dataView.data = "{result:success}";

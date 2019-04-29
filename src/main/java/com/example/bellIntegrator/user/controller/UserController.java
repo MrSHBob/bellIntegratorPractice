@@ -3,9 +3,7 @@ package com.example.bellIntegrator.user.controller;
 import com.example.bellIntegrator.office.view.OfficeViewGet;
 import com.example.bellIntegrator.other.view.DataView;
 import com.example.bellIntegrator.user.service.UserService;
-import com.example.bellIntegrator.user.view.UserViewGet;
-import com.example.bellIntegrator.user.view.UserViewListIn;
-import com.example.bellIntegrator.user.view.UserViewListOut;
+import com.example.bellIntegrator.user.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +37,21 @@ public class UserController {
         DataView dataView = new DataView();
         dataView.data = view.toString();
         return dataView.toString();
+    }
+
+    @PostMapping("/update")
+    public String update(@RequestBody UserViewUpdate view) {
+        userService.update(view);
+        DataView dataView = new DataView();
+        dataView.data = "{result:success}";
+        return  dataView.toString();
+    }
+
+    @PostMapping("/save")
+    public String save(@RequestBody UserViewSave view) {
+        userService.add(view);
+        DataView dataView = new DataView();
+        dataView.data = "{result:success}";
+        return  dataView.toString();
     }
 }

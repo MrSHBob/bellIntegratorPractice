@@ -2,6 +2,7 @@ package com.example.bellIntegrator.countrie.service;
 
 import com.example.bellIntegrator.countrie.dao.CountrieDao;
 import com.example.bellIntegrator.countrie.model.Countrie;
+import com.example.bellIntegrator.countrie.view.CountrieViewSave;
 import com.example.bellIntegrator.other.mapper.MapperFacade;
 import com.example.bellIntegrator.countrie.view.CountrieView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class CountrieServiceImpl implements CountrieService {
 
     @Override
     @Transactional
-    public void add(CountrieView view) {
+    public void add(CountrieViewSave view) {
         Countrie countrie = new Countrie();
         countrie.setCode(view.code);
         countrie.setName(view.name);

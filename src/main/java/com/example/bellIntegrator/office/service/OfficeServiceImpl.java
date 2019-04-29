@@ -4,8 +4,6 @@ import com.example.bellIntegrator.office.dao.OfficeDao;
 import com.example.bellIntegrator.office.model.Office;
 import com.example.bellIntegrator.office.view.*;
 import com.example.bellIntegrator.organization.dao.OrganizationDao;
-import com.example.bellIntegrator.organization.model.Organization;
-import com.example.bellIntegrator.organization.service.OrganizationService;
 import com.example.bellIntegrator.other.mapper.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +47,6 @@ public class OfficeServiceImpl implements OfficeService {
         office.setPhone(view.phone);
         office.setActive(view.isActive);
         dao.update(office);
-
     }
 
     @Override

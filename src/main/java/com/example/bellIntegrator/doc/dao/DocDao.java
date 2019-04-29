@@ -10,5 +10,9 @@ public interface DocDao {
 
     Doc loadById(Long id);
 
+    Doc findByName(String name);
+
+    Doc findByCode(Integer code);
+
     void save(Doc doc);
 }

@@ -1,6 +1,7 @@
 package com.example.bellIntegrator.organization.dao;
 
 import com.example.bellIntegrator.organization.model.Organization;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -27,11 +30,16 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public List<Organization> loadByName( String name) {
+    public List<Organization> loadByName( String name, String inn) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = criteriaBuilder.createQuery(Organization.class);
         Root<Organization> organization = criteriaQuery.from(Organization.class);
-        criteriaQuery.where(organization.get("name").in(name));
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(organization.get("name").in(name));
+        if (inn.length() > 0) {
+            predicates.add(organization.get("inn").in(inn));
+        }
+        criteriaQuery.where(predicates.toArray(new Predicate[] {}));
         criteriaQuery.select(organization);
         TypedQuery<Organization> query = em.createQuery(criteriaQuery);
         return query.getResultList();
@@ -44,14 +52,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public void update(Organization organization) {
-        Organization org = loadById(organization.getId());
-        org.setName(organization.getName());
-        org.setFullName(organization.getFullName());
-        org.setInn(organization.getInn());
-        org.setKpp(organization.getKpp());
-        org.setAddress(organization.getAddress());
-        org.setActive(true);
-        em.merge(org);
+        em.merge(organization);
     }
 
 }

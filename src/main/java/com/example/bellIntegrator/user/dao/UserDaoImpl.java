@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -16,12 +20,6 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     public UserDaoImpl(EntityManager em) {
         this.em = em;
-    }
-
-    @Override
-    public List<User> all() {
-        TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
-        return query.getResultList();
     }
 
     @Override
@@ -41,8 +39,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findByOffice(Long officeId) {
-
-
-        return null;
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+        Root<User> user = criteriaQuery.from(User.class);
+        Predicate predicate = criteriaBuilder.equal(user.get("office"),officeId);
+        criteriaQuery.select(user).where(predicate);
+        TypedQuery<User> query = em.createQuery(criteriaQuery);
+        return query.getResultList();
     }
 }

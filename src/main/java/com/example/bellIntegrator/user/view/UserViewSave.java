@@ -3,15 +3,15 @@ package com.example.bellIntegrator.user.view;
 import com.example.bellIntegrator.office.model.Office;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.Instant;
+import java.util.Date;
 
 public class UserViewSave {
 
-    @NotEmpty
-    public String id;
-
-    @NotEmpty(message = "office cannot be null")
-    public Office office;
+    @NotNull(message = "office cannot be null")
+    public Long officeId;
 
     @Size(max = 30)
     @NotEmpty(message = "first name cannot be null")
@@ -30,12 +30,25 @@ public class UserViewSave {
     @Size(max = 15)
     public String phone;
 
-    public String citizenshipId;
+    public Integer docCode;
+
+    @Size(max = 200)
+    public String docName;
+
+    @Size(max = 15)
+    public String docNumber;
+
+    public Date docDate;
+
+    public Integer citizenshipCode;
+
+    public Boolean isIdentified;
 
     @Override
     public String toString() {
-        return"{id:" + id + ";officeId:" + office.getId() + ";firstName:" + firstName +
-                ";secondName:" + secondName + ";middleName:" + middleName +
-                ";position:" + position + ";phone:" + phone + ";citizenshipId:" + citizenshipId + "}";
+        return"{officeId:" + officeId + ";firstName:" + firstName + ";secondName:" + secondName + ";middleName:"
+                + middleName + ";position:" + position + ";phone:" + phone + ";docCode:" + docCode + ";docName:" + docName
+                + ";docNumber:" + docNumber + ";docDate:" + docDate + ";citizenshipCode:" + citizenshipCode +
+                ";isIdentified:" + isIdentified + "}";
     }
 }

@@ -4,7 +4,9 @@ import com.example.bellIntegrator.doc.model.Doc;
 import com.example.bellIntegrator.user.model.User;
 
 import javax.persistence.*;
+import javax.xml.crypto.Data;
 import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Table(name = "user_doc")
@@ -30,8 +32,7 @@ public class UsersDoc {
     private String docNumber;
 
     @Column(name = "doc_date")
-//    @Temporal(TemporalType.DATE)                      раскоментить, если потребуется
-    private Instant docDate;
+    private Date docDate;
 
     public Long getId() {
         return id;
@@ -57,11 +58,11 @@ public class UsersDoc {
         this.docNumber = docNumber;
     }
 
-    public Instant getDocDate() {
+    public Date getDocDate() {
         return docDate;
     }
 
-    public void setDocDate(Instant docDate) {
+    public void setDocDate(Date docDate) {
         this.docDate = docDate;
     }
 

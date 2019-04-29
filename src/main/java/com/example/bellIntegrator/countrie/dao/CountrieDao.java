@@ -10,5 +10,7 @@ public interface CountrieDao {
 
     Countrie loadById(Long id);
 
+    Countrie findByCode (Integer code);
+
     void save(Countrie countrie);
 }

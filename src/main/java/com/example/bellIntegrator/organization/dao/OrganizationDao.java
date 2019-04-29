@@ -8,7 +8,7 @@ public interface OrganizationDao {
 
     Organization loadById(Long id);
 
-    List<Organization> loadByName(String name);
+    List<Organization> loadByName(String name, String inn);
 
     void save(Organization organization);
 

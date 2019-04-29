@@ -6,12 +6,15 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
 public class CountrieDaoImpl implements CountrieDao {
 
-    //@PersistenceContext                                   нужна ли эта аннотация
     private final EntityManager em;
 
     @Autowired
@@ -31,7 +34,20 @@ public class CountrieDaoImpl implements CountrieDao {
     }
 
     @Override
+    public Countrie findByCode(Integer code) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Countrie> criteriaQuery = criteriaBuilder.createQuery(Countrie.class);
+        Root<Countrie> countrie = criteriaQuery.from(Countrie.class);
+        Predicate predicate = criteriaBuilder.equal(countrie.get("code"),code);
+        criteriaQuery.select(countrie).where(predicate);
+        TypedQuery<Countrie> query = em.createQuery(criteriaQuery);
+        return query.getSingleResult();
+    }
+
+    @Override
     public void save(Countrie countrie) {
         em.persist(countrie);
     }
+
+
 }

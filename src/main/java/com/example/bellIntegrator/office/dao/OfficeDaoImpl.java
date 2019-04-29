@@ -1,9 +1,6 @@
 package com.example.bellIntegrator.office.dao;
 
 import com.example.bellIntegrator.office.model.Office;
-import com.example.bellIntegrator.organization.dao.OrganizationDao;
-import com.example.bellIntegrator.organization.dao.OrganizationDaoImpl;
-import com.example.bellIntegrator.organization.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

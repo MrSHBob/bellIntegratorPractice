@@ -13,8 +13,6 @@ public interface UserService {
 
     void update (@Valid UserViewUpdate user);
 
-    List<UserView> users();
-
     List<UserViewListOut> userByOffice(Long id);
 
     UserViewGet userById(Long id);

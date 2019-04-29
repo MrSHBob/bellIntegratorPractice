@@ -39,8 +39,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional
     public void update(@Valid OrganizationViewUpdate view) {
-        Organization organization = new Organization();
-        organization.setId(view.id);
+        Organization organization = dao.loadById(view.id);
         organization.setName(view.name);
         organization.setFullName(view.fullName);
         organization.setInn(view.inn);
@@ -52,8 +51,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public List<OrganizationViewListOut> organizationsByName(String name) {
-        List<Organization> organizations = dao.loadByName(name);
+    public List<OrganizationViewListOut> organizationsByName(String name, String inn) {
+        List<Organization> organizations = dao.loadByName(name, inn);
         return mapperFacade.mapAsList(organizations, OrganizationViewListOut.class);
     }
 

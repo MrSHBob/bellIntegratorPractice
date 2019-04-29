@@ -2,6 +2,7 @@ package com.example.bellIntegrator.doc.service;
 
 import com.example.bellIntegrator.doc.dao.DocDao;
 import com.example.bellIntegrator.doc.model.Doc;
+import com.example.bellIntegrator.doc.view.DocViewSave;
 import com.example.bellIntegrator.other.mapper.MapperFacade;
 import com.example.bellIntegrator.doc.view.DocView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class DocServiceImpl implements DocService {
 
     @Override
     @Transactional
-    public void add(DocView view) {
+    public void add(DocViewSave view) {
         Doc doc = new Doc();
         doc.setCode(view.code);
         doc.setName(view.name);
