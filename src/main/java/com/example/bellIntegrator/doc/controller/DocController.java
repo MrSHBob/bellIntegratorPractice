@@ -37,4 +37,5 @@ public class DocController {
         dataView.data = "{result:success}";
         return  dataView.toString();
     }
+
 }

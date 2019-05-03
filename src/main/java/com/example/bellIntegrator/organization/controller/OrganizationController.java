@@ -4,9 +4,13 @@ import com.example.bellIntegrator.organization.model.Organization;
 import com.example.bellIntegrator.organization.service.OrganizationService;
 import com.example.bellIntegrator.organization.view.*;
 import com.example.bellIntegrator.other.view.DataView;
+import com.example.bellIntegrator.other.view.ErrorView;
+import org.aspectj.lang.annotation.Aspect;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -54,4 +58,5 @@ public class OrganizationController {
         dataView.data = "{result:success}";
         return  dataView.toString();
     }
+
 }

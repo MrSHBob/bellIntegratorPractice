@@ -35,9 +35,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
         CriteriaQuery<Organization> criteriaQuery = criteriaBuilder.createQuery(Organization.class);
         Root<Organization> organization = criteriaQuery.from(Organization.class);
         List<Predicate> predicates = new ArrayList<>();
-        predicates.add(organization.get("name").in(name));
+        predicates.add(criteriaBuilder.like(organization.get("name"),name));
         if (inn.length() > 0) {
-            predicates.add(organization.get("inn").in(inn));
+            predicates.add(criteriaBuilder.equal(organization.get("inn"),inn));
         }
         criteriaQuery.where(predicates.toArray(new Predicate[] {}));
         criteriaQuery.select(organization);

@@ -2,6 +2,7 @@ package com.example.bellIntegrator.user.controller;
 
 import com.example.bellIntegrator.office.view.OfficeViewGet;
 import com.example.bellIntegrator.other.view.DataView;
+import com.example.bellIntegrator.other.view.ErrorView;
 import com.example.bellIntegrator.user.service.UserService;
 import com.example.bellIntegrator.user.view.*;
 import org.springframework.beans.factory.annotation.Autowired;

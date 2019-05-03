@@ -5,23 +5,23 @@ import javax.validation.constraints.Size;
 
 public class OrganizationViewSave {
 
-    @NotEmpty
+    @NotEmpty (message = "name must be filled")
     @Size(max = 50)
     public String name;
 
-    @NotEmpty
+    @NotEmpty (message = "fullName must be filled")
     @Size(max = 200)
     public String fullName;
 
-    @NotEmpty
+    @NotEmpty (message = "inn must be filled")
     @Size(max = 20)
     public String inn;
 
-    @NotEmpty
+    @NotEmpty (message = "kpp must be filled")
     @Size(max = 9)
     public String kpp;
 
-    @NotEmpty
+    @NotEmpty (message = "address must be filled")
     @Size(max = 100)
     public String address;
 
