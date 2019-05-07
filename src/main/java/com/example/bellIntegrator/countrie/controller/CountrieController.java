@@ -1,9 +1,9 @@
 package com.example.bellIntegrator.countrie.controller;
 
+import com.example.bellIntegrator.additionalLogic.view.SuccessView;
 import com.example.bellIntegrator.countrie.service.CountrieService;
 import com.example.bellIntegrator.countrie.view.CountrieView;
 import com.example.bellIntegrator.countrie.view.CountrieViewSave;
-import com.example.bellIntegrator.other.view.DataView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,18 +23,15 @@ public class CountrieController {
     }
 
     @GetMapping
-    public String countries () {
+    public List<CountrieView> countries () {
         List<CountrieView> views = countrieService.countries();
-        DataView dataView = new DataView();
-        dataView.data = views.toString();
-        return dataView.toString();
+        return views;
     }
 
     @PostMapping("/add")                                                    //temporary method
-    public String add (@RequestBody CountrieViewSave view) {
+    public SuccessView add (@RequestBody CountrieViewSave view) {
         countrieService.add(view);
-        DataView dataView = new DataView();
-        dataView.data = "{result:success}";
-        return  dataView.toString();
+        SuccessView success = new SuccessView();
+        return  success;
     }
 }

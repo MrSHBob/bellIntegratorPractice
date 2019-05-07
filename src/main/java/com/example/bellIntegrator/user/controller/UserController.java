@@ -1,8 +1,6 @@
 package com.example.bellIntegrator.user.controller;
 
-import com.example.bellIntegrator.office.view.OfficeViewGet;
-import com.example.bellIntegrator.other.view.DataView;
-import com.example.bellIntegrator.other.view.ErrorView;
+import com.example.bellIntegrator.additionalLogic.view.SuccessView;
 import com.example.bellIntegrator.user.service.UserService;
 import com.example.bellIntegrator.user.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,34 +23,28 @@ public class UserController {
     }
 
     @PostMapping("/list")
-    public String list (@RequestBody UserViewListIn view) {
+    public List<UserViewListOut> list (@RequestBody UserViewListIn view) {
         List<UserViewListOut> views = userService.userByOffice(view.office.getId());
-        DataView dataView = new DataView();
-        dataView.data = views.toString();
-        return dataView.toString();
+        return views;
     }
 
     @RequestMapping(value = "/{id:[\\d]+}", method = GET)
-    public String userById (@PathVariable("id") Long id) {
+    public UserViewGet userById (@PathVariable("id") Long id) {
         UserViewGet view = userService.userById(id);
-        DataView dataView = new DataView();
-        dataView.data = view.toString();
-        return dataView.toString();
+        return view;
     }
 
     @PostMapping("/update")
-    public String update(@RequestBody UserViewUpdate view) {
+    public SuccessView update(@RequestBody UserViewUpdate view) {
         userService.update(view);
-        DataView dataView = new DataView();
-        dataView.data = "{result:success}";
-        return  dataView.toString();
+        SuccessView success = new SuccessView();
+        return  success;
     }
 
     @PostMapping("/save")
-    public String save(@RequestBody UserViewSave view) {
+    public SuccessView save(@RequestBody UserViewSave view) {
         userService.add(view);
-        DataView dataView = new DataView();
-        dataView.data = "{result:success}";
-        return  dataView.toString();
+        SuccessView success = new SuccessView();
+        return  success;
     }
 }

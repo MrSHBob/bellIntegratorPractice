@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 public class OrganizationViewSave {
 
-    @NotEmpty (message = "name must be filled")
+    @NotEmpty /*(message = "name must be filled")*/
     @Size(max = 50)
     public String name;
 
@@ -13,7 +13,7 @@ public class OrganizationViewSave {
     @Size(max = 200)
     public String fullName;
 
-    @NotEmpty (message = "inn must be filled")
+    @NotEmpty /*(message = "inn must be filled")*/
     @Size(max = 20)
     public String inn;
 
@@ -30,9 +30,4 @@ public class OrganizationViewSave {
 
     public Boolean isActive;
 
-    @Override
-    public String toString() {
-        return"{name:" + name + ";fullName:" + fullName + ";inn:" + inn + ";kpp:" + kpp
-                + ";address:" + address + ";phone:" + phone + ";isActive:" + isActive + "}";
-    }
 }

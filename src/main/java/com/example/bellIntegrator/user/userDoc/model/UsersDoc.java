@@ -1,4 +1,4 @@
-package com.example.bellIntegrator.userDoc.model;
+package com.example.bellIntegrator.user.userDoc.model;
 
 import com.example.bellIntegrator.doc.model.Doc;
 import com.example.bellIntegrator.user.model.User;

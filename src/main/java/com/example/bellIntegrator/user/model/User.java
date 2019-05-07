@@ -2,10 +2,9 @@ package com.example.bellIntegrator.user.model;
 
 import com.example.bellIntegrator.countrie.model.Countrie;
 import com.example.bellIntegrator.office.model.Office;
-import com.example.bellIntegrator.userDoc.model.UsersDoc;
+import com.example.bellIntegrator.user.userDoc.model.UsersDoc;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "user")

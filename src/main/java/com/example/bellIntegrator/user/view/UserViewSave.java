@@ -43,12 +43,4 @@ public class UserViewSave {
     public Integer citizenshipCode;
 
     public Boolean isIdentified;
-
-    @Override
-    public String toString() {
-        return"{officeId:" + officeId + ";firstName:" + firstName + ";secondName:" + secondName + ";middleName:"
-                + middleName + ";position:" + position + ";phone:" + phone + ";docCode:" + docCode + ";docName:" + docName
-                + ";docNumber:" + docNumber + ";docDate:" + docDate + ";citizenshipCode:" + citizenshipCode +
-                ";isIdentified:" + isIdentified + "}";
-    }
 }

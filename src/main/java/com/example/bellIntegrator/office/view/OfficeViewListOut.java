@@ -13,9 +13,4 @@ public class OfficeViewListOut {
     public String name;
 
     public Boolean isActive;
-
-    @Override
-    public String toString() {
-        return"{id:" + id + ";name:" + name + ";isActive:" + isActive + "}";
-    }
 }

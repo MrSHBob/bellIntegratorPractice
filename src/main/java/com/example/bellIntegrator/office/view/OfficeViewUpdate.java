@@ -23,10 +23,4 @@ public class OfficeViewUpdate {
     public String phone;
 
     public Boolean isActive;
-
-    @Override
-    public String toString() {
-        return"{id:" + id + ";name:" + name + ";address:" + address +
-                ";phone:" + phone + ";isActive:" + isActive + "}";
-    }
 }

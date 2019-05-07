@@ -3,7 +3,7 @@ package com.example.bellIntegrator.countrie.service;
 import com.example.bellIntegrator.countrie.dao.CountrieDao;
 import com.example.bellIntegrator.countrie.model.Countrie;
 import com.example.bellIntegrator.countrie.view.CountrieViewSave;
-import com.example.bellIntegrator.other.mapper.MapperFacade;
+import com.example.bellIntegrator.additionalLogic.mapper.MapperFacade;
 import com.example.bellIntegrator.countrie.view.CountrieView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,17 +1,14 @@
 package com.example.bellIntegrator.user.service;
 
 import com.example.bellIntegrator.countrie.dao.CountrieDao;
-import com.example.bellIntegrator.countrie.model.Countrie;
 import com.example.bellIntegrator.doc.dao.DocDao;
 import com.example.bellIntegrator.doc.model.Doc;
 import com.example.bellIntegrator.office.dao.OfficeDao;
-import com.example.bellIntegrator.office.model.Office;
-import com.example.bellIntegrator.office.view.OfficeViewListOut;
 import com.example.bellIntegrator.user.dao.UserDao;
 import com.example.bellIntegrator.user.model.User;
-import com.example.bellIntegrator.other.mapper.MapperFacade;
+import com.example.bellIntegrator.additionalLogic.mapper.MapperFacade;
 import com.example.bellIntegrator.user.view.*;
-import com.example.bellIntegrator.userDoc.model.UsersDoc;
+import com.example.bellIntegrator.user.userDoc.model.UsersDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

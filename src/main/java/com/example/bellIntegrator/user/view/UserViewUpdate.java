@@ -43,11 +43,4 @@ public class UserViewUpdate {
     public Integer citizenshipCode;
 
     public Boolean isIdentified;
-
-    @Override
-    public String toString() {
-        return"{id:" + id + ";officeId:" + officeId + ";firstName:" + firstName + ";secondName:" + secondName + ";middleName:"
-                + middleName + ";position:" + position + ";phone:" + phone + ";docName:" + docName + ";docNumber:" + docNumber +
-                ";docDate:" + docDate + ";citizenshipCode:" + citizenshipCode + ";isIdentified:" + isIdentified + "}";
-    }
 }

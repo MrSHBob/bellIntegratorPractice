@@ -21,10 +21,4 @@ public class OfficeViewSave {
     public String phone;
 
     public Boolean isActive;
-
-    @Override
-    public String toString() {
-        return"{orgId:" + orgId + ";name:" + name + ";address:" + address +
-                ";phone:" + phone + ";isActive:" + isActive + "}";
-    }
 }

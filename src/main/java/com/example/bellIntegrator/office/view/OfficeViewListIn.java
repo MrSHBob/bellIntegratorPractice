@@ -15,9 +15,4 @@ public class OfficeViewListIn {
     public String phone;
 
     public Boolean isActive;
-
-    @Override
-    public String toString() {
-        return"{orgId:" + orgId + ";name:" + name + ";phone:" + phone + ";isActive:" + isActive + "}";
-    }
 }

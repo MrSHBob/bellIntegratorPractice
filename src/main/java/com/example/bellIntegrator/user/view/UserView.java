@@ -31,11 +31,4 @@ public class UserView {
     public String phone;
 
     public String citizenshipId;
-
-    @Override
-    public String toString() {
-        return"{id:" + id + ";officeId:" + office.getId() + ";firstName:" + firstName +
-                ";secondName:" + secondName + ";middleName:" + middleName +
-                ";position:" + position + ";phone:" + phone + ";citizenshipId:" + citizenshipId + "}";
-    }
 }

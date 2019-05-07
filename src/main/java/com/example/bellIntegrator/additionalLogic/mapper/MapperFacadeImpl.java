@@ -1,4 +1,4 @@
-package com.example.bellIntegrator.other.mapper;
+package com.example.bellIntegrator.additionalLogic.mapper;
 
 import ma.glasnost.orika.MapperFactory;
 import org.springframework.beans.factory.annotation.Autowired;

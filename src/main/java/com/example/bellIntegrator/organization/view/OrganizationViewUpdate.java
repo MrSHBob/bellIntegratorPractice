@@ -33,10 +33,4 @@ public class OrganizationViewUpdate {
     public String phone;
 
     public Boolean isActive;
-
-    @Override
-    public String toString() {
-        return"{id:" + id + ";name:" + name + ";fullName:" + fullName + ";inn:" + inn + ";kpp:" + kpp
-                + ";address:" + address + ";phone:" + phone + ";isActive:" + isActive + "}";
-    }
 }

@@ -14,8 +14,4 @@ public class OrganizationViewListIn {
 
     public Boolean isActive;
 
-    @Override
-    public String toString() {
-        return"{name:" + name + ";inn:" + inn + ";isActive:" + isActive + "}";
-    }
 }

@@ -1,6 +1,6 @@
-package com.example.bellIntegrator.userDoc.dao;
+package com.example.bellIntegrator.user.userDoc.dao;
 
-import com.example.bellIntegrator.userDoc.model.UsersDoc;
+import com.example.bellIntegrator.user.userDoc.model.UsersDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

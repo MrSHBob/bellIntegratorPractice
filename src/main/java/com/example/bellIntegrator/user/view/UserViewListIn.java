@@ -25,11 +25,4 @@ public class UserViewListIn {
     public Integer docCod;
 
     public String citizenshipId;
-
-    @Override
-    public String toString() {
-        return"{officeId:" + office.getId() + ";firstName:" + firstName +
-                ";secondName:" + secondName + ";middleName:" + middleName +
-                ";position:" + position + ";docCod:" + docCod + ";citizenshipId:" + citizenshipId + "}";
-    }
 }

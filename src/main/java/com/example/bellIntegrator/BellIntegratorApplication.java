@@ -19,18 +19,4 @@ public class BellIntegratorApplication {
 		SpringApplication.run(BellIntegratorApplication.class, args);
 	}
 
-	@Bean
-	public TaskExecutor controllerPool() {
-		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-		executor.setMaxPoolSize(Runtime.getRuntime().availableProcessors() + 1);
-		executor.setQueueCapacity(25);
-		return executor;
-	}
-
-	@Bean
-	public LocaleResolver localeResolver() {
-		SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
-		sessionLocaleResolver.setDefaultLocale(Locale.US);
-		return sessionLocaleResolver;
-	}
 }

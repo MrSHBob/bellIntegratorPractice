@@ -4,7 +4,7 @@ import com.example.bellIntegrator.office.dao.OfficeDao;
 import com.example.bellIntegrator.office.model.Office;
 import com.example.bellIntegrator.office.view.*;
 import com.example.bellIntegrator.organization.dao.OrganizationDao;
-import com.example.bellIntegrator.other.mapper.MapperFacade;
+import com.example.bellIntegrator.additionalLogic.mapper.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,16 +1,11 @@
 package com.example.bellIntegrator.organization.controller;
 
-import com.example.bellIntegrator.organization.model.Organization;
+import com.example.bellIntegrator.additionalLogic.view.SuccessView;
 import com.example.bellIntegrator.organization.service.OrganizationService;
 import com.example.bellIntegrator.organization.view.*;
-import com.example.bellIntegrator.other.view.DataView;
-import com.example.bellIntegrator.other.view.ErrorView;
-import org.aspectj.lang.annotation.Aspect;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -28,35 +23,29 @@ public class OrganizationController {
     }
 
     @PostMapping("/list")
-    public String list (@RequestBody OrganizationViewListIn view) {
+    public List<OrganizationViewListOut> list (@RequestBody OrganizationViewListIn view) {
         List<OrganizationViewListOut> orgViews = organizationService.organizationsByName(view.name, view.inn);
-        DataView dataView = new DataView();
-        dataView.data = orgViews.toString();
-        return dataView.toString();
+        return orgViews;
     }
 
     @RequestMapping(value = "/{id:[\\d]+}", method = GET)
-    public String orgById (@PathVariable("id") Long orgId) {
+    public OrganizationView orgById (@PathVariable("id") Long orgId) {
         OrganizationView orgView = organizationService.organizationsById(orgId);
-        DataView dataView = new DataView();
-        dataView.data = orgView.toString();
-        return dataView.toString();
+        return orgView;
     }
 
     @PostMapping("/update")
-    public String update(@RequestBody OrganizationViewUpdate view) {
+    public SuccessView update(@RequestBody OrganizationViewUpdate view) {
         organizationService.update(view);
-        DataView dataView = new DataView();
-        dataView.data = "{result:success}";
-        return  dataView.toString();
+        SuccessView success = new SuccessView();
+        return  success;
     }
 
     @PostMapping("/save")
-    public String save(@RequestBody OrganizationViewSave view) {
+    public SuccessView save(@RequestBody OrganizationViewSave view) {
         organizationService.add(view);
-        DataView dataView = new DataView();
-        dataView.data = "{result:success}";
-        return  dataView.toString();
+        SuccessView success = new SuccessView();
+        return  success;
     }
 
 }
