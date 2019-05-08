@@ -9,7 +9,6 @@ public class OfficeViewListOut {
 
     public String id;
 
-    @Size(max = 50)
     public String name;
 
     public Boolean isActive;

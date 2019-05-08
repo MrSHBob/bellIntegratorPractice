@@ -24,7 +24,7 @@ public class UserController {
 
     @PostMapping("/list")
     public List<UserViewListOut> list (@RequestBody UserViewListIn view) {
-        List<UserViewListOut> views = userService.userByOffice(view.office.getId());
+        List<UserViewListOut> views = userService.userByOffice(view.officeId);
         return views;
     }
 

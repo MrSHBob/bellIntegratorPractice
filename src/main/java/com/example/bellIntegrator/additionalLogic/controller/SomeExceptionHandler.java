@@ -41,7 +41,6 @@ public class SomeExceptionHandler extends ResponseEntityExceptionHandler {
 
         ErrorView errorView = new ErrorView();
         errorView.error = StringUtils.arrayToDelimitedString(errors.toArray(),", ");
-        //errorView.error = "fields filled wrong";
         return errorView;
     }
 }

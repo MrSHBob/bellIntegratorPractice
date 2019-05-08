@@ -8,16 +8,16 @@ import javax.validation.constraints.Size;
 
 public class OfficeViewSave {
 
-    @NotNull
+    @NotNull (message = "OrganizationId is required field")
     public Long orgId;
 
-    @Size(max = 50)
+    @Size(max = 50, message = "name max size 50")
     public String name;
 
-    @Size(max = 100)
+    @Size(max = 100, message = "address max size 50")
     public String address;
 
-    @Size(max = 15)
+    @Size(max = 15, message = "phone max size 50")
     public String phone;
 
     public Boolean isActive;

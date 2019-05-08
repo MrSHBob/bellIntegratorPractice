@@ -6,7 +6,6 @@ public class OrganizationViewListOut {
 
     public Long id;
 
-    @Size(max = 50)
     public String name;
 
     public Boolean isActive;

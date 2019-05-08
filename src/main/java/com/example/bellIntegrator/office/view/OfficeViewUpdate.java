@@ -8,18 +8,18 @@ import javax.validation.constraints.Size;
 
 public class OfficeViewUpdate {
 
-    @NotNull
+    @NotNull (message = "Id is required field")
     public Long id;
 
-    @NotEmpty
-    @Size(max = 50)
+    @NotEmpty (message = "name is required field")
+    @Size (max = 50, message = "name max size 50")
     public String name;
 
-    @NotEmpty
-    @Size(max = 100)
+    @NotEmpty (message = "address is required field")
+    @Size (max = 100, message = "address max size 50")
     public String address;
 
-    @Size(max = 15)
+    @Size (max = 15, message = "phone max size 50")
     public String phone;
 
     public Boolean isActive;
