@@ -4,7 +4,7 @@ import com.example.bellIntegrator.office.dao.OfficeDao;
 import com.example.bellIntegrator.office.model.Office;
 import com.example.bellIntegrator.office.view.*;
 import com.example.bellIntegrator.organization.dao.OrganizationDao;
-import com.example.bellIntegrator.additionalLogic.mapper.MapperFacade;
+import com.example.bellIntegrator.response.mapper.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Сервис, передающий запросы из контроллера в DAO для офиса.
+ */
 @Service
 public class OfficeServiceImpl implements OfficeService {
     private final OfficeDao dao;
@@ -25,44 +28,47 @@ public class OfficeServiceImpl implements OfficeService {
         this.orgDao = orgDao;
     }
 
+    /**
+     * Добавление нового офиса.
+     */
     @Override
     @Transactional
     public void add(OfficeViewSave view) {
         Office office = new Office();
+        mapperFacade.map(view, office);
         office.setOrganization(orgDao.loadById(view.orgId));
-        office.setName(view.name);
-        office.setAddress(view.address);
-        office.setPhone(view.phone);
         office.setActive(view.isActive);
         dao.save(office);
     }
 
+    /**
+     * Изменение офиса.
+     */
     @Override
     @Transactional
     public void update(@Valid OfficeViewUpdate view) {
         Office office = dao.loadById(view.id);
-        office.setId(view.id);
-        office.setName(view.name);
-        office.setAddress(view.address);
-        office.setPhone(view.phone);
+        mapperFacade.map(view, office);
         office.setActive(view.isActive);
         dao.update(office);
     }
 
+    /**
+     * Фильтр офисов по организации и др. полям.
+     */
     @Override
-    public List<OfficeViewListOut> officeByOrg(Long orgId) {
-        List<Office> offices = dao.findByOrg(orgId);
+    public List<OfficeViewListOut> officeFilter(OfficeViewListIn view) {
+        List<Office> offices = dao.officeFilter(view);
         return mapperFacade.mapAsList(offices, OfficeViewListOut.class);
     }
 
+    /**
+     * Возвращает офис по id.
+     */
     @Override
     public OfficeViewGet officeById(Long id) {
         Office office = dao.loadById(id);
-        OfficeViewGet view = new OfficeViewGet();
-        view.id = office.getId();
-        view.name = office.getName();
-        view.address = office.getAddress();
-        view.phone = office.getPhone();
+        OfficeViewGet view = mapperFacade.map(office, OfficeViewGet.class);
         view.isActive = office.getActive();
         return view;
     }

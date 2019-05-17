@@ -1,6 +1,7 @@
 package com.example.bellIntegrator.organization.dao;
 
 import com.example.bellIntegrator.organization.model.Organization;
+import com.example.bellIntegrator.organization.view.OrganizationViewListIn;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,9 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO для организации.
+ */
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {
 
@@ -24,20 +28,26 @@ public class OrganizationDaoImpl implements OrganizationDao {
         this.em = em;
     }
 
+    /**
+     * Метод возвращает организацию по id.
+     */
     @Override
     public Organization loadById(Long id) {
         return em.find(Organization.class, id);
     }
 
+    /**
+     * Фильтр организаций по частичному вхождению по имени, и по ИНН.
+     */
     @Override
-    public List<Organization> loadByName( String name, String inn) {
+    public List<Organization> organizationFilter( OrganizationViewListIn view) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = criteriaBuilder.createQuery(Organization.class);
         Root<Organization> organization = criteriaQuery.from(Organization.class);
         List<Predicate> predicates = new ArrayList<>();
-        predicates.add(criteriaBuilder.like(organization.get("name"),"%" + name + "%"));
-        if (inn.length() > 0) {
-            predicates.add(criteriaBuilder.equal(organization.get("inn"),inn));
+        predicates.add(criteriaBuilder.like(organization.get("name"),"%" + view.name + "%"));
+        if (view.inn.length() > 0) {
+            predicates.add(criteriaBuilder.equal(organization.get("inn"),view.inn));
         }
         criteriaQuery.where(predicates.toArray(new Predicate[] {}));
         criteriaQuery.select(organization);
@@ -45,11 +55,17 @@ public class OrganizationDaoImpl implements OrganizationDao {
         return query.getResultList();
     }
 
+    /**
+     * Метод добавляет новую запись в таблицу "organization".
+     */
     @Override
     public void save(Organization organization) {
         em.persist(organization);
     }
 
+    /**
+     * Изменение существующей организации.
+     */
     @Override
     public void update(Organization organization) {
         em.merge(organization);

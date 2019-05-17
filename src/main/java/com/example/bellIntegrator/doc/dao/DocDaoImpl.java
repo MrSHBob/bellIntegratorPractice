@@ -12,6 +12,9 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * DAO для документов.
+ */
 @Repository
 public class DocDaoImpl implements DocDao {
 
@@ -22,22 +25,26 @@ public class DocDaoImpl implements DocDao {
         this.em = em;
     }
 
+    /**
+     * Метод возвращает перечень документов.
+     */
     @Override
     public List<Doc> all() {
         TypedQuery<Doc> query = em.createQuery("SELECT d FROM Doc d", Doc.class);
         return query.getResultList();
     }
 
+    /**
+     * Метод возвращает документ по id.
+     */
     @Override
     public Doc loadById(Long id) {
         return em.find(Doc.class, id);
     }
 
-    @Override
-    public void save(Doc doc) {
-        em.persist(doc);
-    }
-
+    /**
+     * Метод возвращает документ по имени.
+     */
     @Override
     public Doc findByName(String name) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
@@ -49,6 +56,9 @@ public class DocDaoImpl implements DocDao {
         return query.getSingleResult();
     }
 
+    /**
+     * Метод возвращает документ по коду.
+     */
     @Override
     public Doc findByCode(Integer code) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
@@ -58,5 +68,13 @@ public class DocDaoImpl implements DocDao {
         criteriaQuery.select(doc).where(predicate);
         TypedQuery<Doc> query = em.createQuery(criteriaQuery);
         return query.getSingleResult();
+    }
+
+    /**
+     * Метод добавляет новую запись в таблицу "docs".
+     */
+    @Override
+    public void save(Doc doc) {
+        em.persist(doc);
     }
 }

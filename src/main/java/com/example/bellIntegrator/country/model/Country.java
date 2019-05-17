@@ -1,10 +1,10 @@
-package com.example.bellIntegrator.countrie.model;
+package com.example.bellIntegrator.country.model;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "countrie")
-public class Countrie {
+@Table(name = "country")
+public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

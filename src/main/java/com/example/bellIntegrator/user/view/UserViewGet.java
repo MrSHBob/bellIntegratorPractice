@@ -1,6 +1,6 @@
 package com.example.bellIntegrator.user.view;
 
-import java.time.Instant;
+import java.util.Date;
 
 public class UserViewGet {
 
@@ -20,11 +20,11 @@ public class UserViewGet {
 
     public String docNumber;
 
-    public Instant docDate;
+    public Date docDate;
 
     public String citizenshipName;
 
-    public String citizenshipCode;
+    public Integer citizenshipCode;
 
     public Boolean isIdentified;
 }

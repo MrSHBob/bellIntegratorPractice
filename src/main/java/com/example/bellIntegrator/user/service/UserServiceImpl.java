@@ -1,12 +1,12 @@
 package com.example.bellIntegrator.user.service;
 
-import com.example.bellIntegrator.countrie.dao.CountrieDao;
+import com.example.bellIntegrator.country.dao.CountryDao;
 import com.example.bellIntegrator.doc.dao.DocDao;
 import com.example.bellIntegrator.doc.model.Doc;
 import com.example.bellIntegrator.office.dao.OfficeDao;
 import com.example.bellIntegrator.user.dao.UserDao;
 import com.example.bellIntegrator.user.model.User;
-import com.example.bellIntegrator.additionalLogic.mapper.MapperFacade;
+import com.example.bellIntegrator.response.mapper.MapperFacade;
 import com.example.bellIntegrator.user.view.*;
 import com.example.bellIntegrator.user.userDoc.model.UsersDoc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,40 +15,39 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Сервис, передающий запросы из контроллера в DAO для юзера.
+ */
 @Service
 public class UserServiceImpl implements UserService {
     private final UserDao dao;
     private final MapperFacade mapperFacade;
     private final OfficeDao officeDao;
     private final DocDao docDao;
-    private final CountrieDao countrieDao;
+    private final CountryDao countryDao;
 
     @Autowired
     public UserServiceImpl(
-            UserDao dao, MapperFacade mapperFacade, OfficeDao officeDao, DocDao docDao, CountrieDao countrieDao
+            UserDao dao, MapperFacade mapperFacade, OfficeDao officeDao, DocDao docDao, CountryDao countryDao
     ) {
         this.dao = dao;
         this.mapperFacade = mapperFacade;
         this.officeDao = officeDao;
         this.docDao = docDao;
-        this.countrieDao = countrieDao;
+        this.countryDao = countryDao;
     }
 
+    /**
+     * Добавление нового юзера.
+     */
     @Override
     @Transactional
     public void add(UserViewSave view) {
-        User user = new User();
+        User user = mapperFacade.map(view, User.class);
         user.setOffice(officeDao.loadById(view.officeId));
-        user.setFirstName(view.firstName);
-        user.setSecondName(view.secondName);
-        user.setMiddleName(view.middleName);
-        user.setPosition(view.position);
-        user.setPhone(view.phone);
-
         UsersDoc usersDoc = new UsersDoc();
-        usersDoc.setUser(user);
-
         if (view.docCode != null && view.docCode > 0) {
+            usersDoc.setUser(user);
             Doc doc = docDao.findByCode(view.docCode);
             usersDoc.setDoc(doc);
             usersDoc.setDocNumber(view.docNumber);
@@ -56,20 +55,22 @@ public class UserServiceImpl implements UserService {
             user.setUserDoc(usersDoc);
         } else if (view.docName != null && view.docName.length() != 0) {
             Doc doc = docDao.findByName(view.docName);
+            usersDoc.setUser(user);
             usersDoc.setDoc(doc);
             usersDoc.setDocNumber(view.docNumber);
             usersDoc.setDocDate(view.docDate);
             user.setUserDoc(usersDoc);
         }
-
         if (view.citizenshipCode != null && view.citizenshipCode > 0) {
-            user.setCitizenship(countrieDao.findByCode(view.citizenshipCode));
+            user.setCitizenship(countryDao.findByCode(view.citizenshipCode));
         }
-
         user.setIdentified(view.isIdentified);
         dao.save(user);
     }
 
+    /**
+     * Изменение юзера.
+     */
     @Override
     @Transactional
     public void update(UserViewUpdate view) {
@@ -77,47 +78,56 @@ public class UserServiceImpl implements UserService {
         if (view.officeId != null && view.officeId != 0) {
             user.setOffice(officeDao.loadById(view.officeId));
         }
-        user.setFirstName(view.firstName);
-        user.setSecondName(view.secondName);
-        user.setMiddleName(view.middleName);
-        user.setPosition(view.position);
-        user.setPhone(view.phone);
-
+        mapperFacade.map(view, user);
         // тут мы сэтим документ
-        //user.getUserDoc().setDocNumber(view.docNumber);
-
-        // еще мы сэтим гражданство
-        user.setCitizenship(countrieDao.findByCode(view.citizenshipCode));
-
+        if (view.docName != null && view.docName.length() != 0) {
+            if (user.getUserDoc() != null) {
+                user.getUserDoc().setDocNumber(view.docNumber);
+                user.getUserDoc().setDocDate(view.docDate);
+            } else {
+                UsersDoc userDoc = new UsersDoc();
+                userDoc.setDoc(docDao.findByName(view.docName));
+                userDoc.setDocNumber(view.docNumber);
+                userDoc.setDocDate(view.docDate);
+                userDoc.setUser(user);
+                user.setUserDoc(userDoc);
+            }
+        }
+        if (view.citizenshipCode != null && view.citizenshipCode > 0) {
+            user.setCitizenship(countryDao.findByCode(view.citizenshipCode));
+        }
         user.setIdentified(view.isIdentified);
         dao.update(user);
     }
 
+    /**
+     * Фильтр юзеров.
+     */
     @Override
-    public List<UserViewListOut> userByOffice(Long officeId) {
-        List<User> users = dao.findByOffice(officeId);
+    public List<UserViewListOut> userFilter(UserViewListIn view) {
+        List<User> users = dao.userFilter(view);
         return mapperFacade.mapAsList(users, UserViewListOut.class);
     }
 
+    /**
+     * Возвращает юзера по id.
+     */
     @Override
     public UserViewGet userById(Long id) {
         User user = dao.loadById(id);
         UserViewGet view = new UserViewGet();
-        view.id = user.getId();
-        view.firstName = user.getFirstName();
-        view.secondName = user.getSecondName();
-        view.middleName = user.getMiddleName();
-        view.position = user.getPosition();
-        view.phone = user.getPhone();
-
-//        view.docName = user.;
-//        view.docNumber = user.;
-//        view.docDate = user.;
-//        view.citizenshipName = user.;
-//        view.citizenshipCode = user.;
-
+        mapperFacade.map(user, view);
+        if (user.getUserDoc() != null) {
+            view.docName = user.getUserDoc().getDoc().getName();
+            view.docNumber = user.getUserDoc().getDocNumber();
+            view.docDate = user.getUserDoc().getDocDate();
+        }
+        if (user.getCitizenship() != null) {
+            view.citizenshipName = user.getCitizenship().getName();
+            view.citizenshipCode = user.getCitizenship().getCode();
+        }
         view.isIdentified = user.getIdentified();
 
-        return null;
+        return view;
     }
 }

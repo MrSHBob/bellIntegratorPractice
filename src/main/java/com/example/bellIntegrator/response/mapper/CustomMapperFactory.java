@@ -1,4 +1,4 @@
-package com.example.bellIntegrator.additionalLogic.mapper;
+package com.example.bellIntegrator.response.mapper;
 
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.beans.factory.FactoryBean;

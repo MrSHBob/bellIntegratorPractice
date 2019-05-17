@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS user_doc (
     doc_date            DATE                    COMMENT 'Выдан'
 );
 
-CREATE TABLE IF NOT EXISTS countrie (
+CREATE TABLE IF NOT EXISTS country (
     id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
     code                INTEGER                 COMMENT 'Код страны' UNIQUE,
     version             INTEGER NOT NULL        COMMENT 'Служебное поле hibernate',
@@ -71,4 +71,4 @@ ALTER TABLE user_doc ADD FOREIGN KEY (user_id) REFERENCES user(id);
 CREATE INDEX IF NOT EXISTS IX_user_office_id ON user (office_id);
 ALTER TABLE user ADD FOREIGN KEY (office_id) REFERENCES office(id);
 CREATE INDEX IF NOT EXISTS IX_user_citizenship_id ON user (citizenship_id);
-ALTER TABLE user ADD FOREIGN KEY (citizenship_id) REFERENCES countrie(id);
+ALTER TABLE user ADD FOREIGN KEY (citizenship_id) REFERENCES country(id);

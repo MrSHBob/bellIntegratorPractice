@@ -1,6 +1,6 @@
-package com.example.bellIntegrator.additionalLogic.controller;
+package com.example.bellIntegrator.response.controller;
 
-import com.example.bellIntegrator.additionalLogic.view.ErrorView;
+import com.example.bellIntegrator.response.view.ErrorView;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -9,20 +9,24 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
+/**
+ * Класс обработки исключений при обработке запросов.
+ */
 @RestControllerAdvice
 public class SomeExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ErrorView handleException (Exception e) {
         ErrorView errorView = new ErrorView();
-        errorView.error = "some mistery error";
+        errorView.error = "some mystery error";
         return errorView;
     }
 
+    /**
+     * Метод перехватывает возникающие NullPointerException
+     */
     @ExceptionHandler(NullPointerException.class)
     public ErrorView handleException (NullPointerException e) {
         ErrorView errorView = new ErrorView();
@@ -30,11 +34,13 @@ public class SomeExceptionHandler extends ResponseEntityExceptionHandler {
         return errorView;
     }
 
+    /**
+     * Метод перехватывает возникающие ConstraintViolationException
+     */
     @ExceptionHandler(ConstraintViolationException.class)
     public ErrorView handleException (ConstraintViolationException e) {
         List<String> errors = new ArrayList<>();
         for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
-            //String attribute = violation.getPropertyPath().toString();
             String message = violation.getMessage();
             errors.add(message);
         }

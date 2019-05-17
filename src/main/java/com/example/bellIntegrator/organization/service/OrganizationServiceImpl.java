@@ -3,7 +3,7 @@ package com.example.bellIntegrator.organization.service;
 import com.example.bellIntegrator.organization.dao.OrganizationDao;
 import com.example.bellIntegrator.organization.model.Organization;
 import com.example.bellIntegrator.organization.view.*;
-import com.example.bellIntegrator.additionalLogic.mapper.MapperFacade;
+import com.example.bellIntegrator.response.mapper.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Сервис, передающий запросы из контроллера в DAO для организации.
+ */
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
     private final OrganizationDao dao;
@@ -22,51 +25,46 @@ public class OrganizationServiceImpl implements OrganizationService {
         this.mapperFacade = mapperFacade;
     }
 
+    /**
+     * Добавление новой организации.
+     */
     @Override
     @Transactional
     public void add(@Valid OrganizationViewSave view) {
         Organization organization = new Organization();
-        organization.setName(view.name);
-        organization.setFullName(view.fullName);
-        organization.setInn(view.inn);
-        organization.setKpp(view.kpp);
-        organization.setAddress(view.address);
-        organization.setPhone(view.phone);
+        mapperFacade.map(view, organization);
         organization.setActive(view.isActive);
         dao.save(organization);
     }
 
+    /**
+     * Изменение организации.
+     */
     @Override
     @Transactional
     public void update(@Valid OrganizationViewUpdate view) {
         Organization organization = dao.loadById(view.id);
-        organization.setName(view.name);
-        organization.setFullName(view.fullName);
-        organization.setInn(view.inn);
-        organization.setKpp(view.kpp);
-        organization.setAddress(view.address);
-        organization.setPhone(view.phone);
+        mapperFacade.map(view, organization);
         organization.setActive(view.isActive);
         dao.update(organization);
     }
 
+    /**
+     * Фильтр организаций.
+     */
     @Override
-    public List<OrganizationViewListOut> organizationsByName(String name, String inn) {
-        List<Organization> organizations = dao.loadByName(name, inn);
+    public List<OrganizationViewListOut> organizationFilter(OrganizationViewListIn view) {
+        List<Organization> organizations = dao.organizationFilter(view);
         return mapperFacade.mapAsList(organizations, OrganizationViewListOut.class);
     }
 
+    /**
+     * Возвращает организацию по id.
+     */
     @Override
     public OrganizationView organizationsById(Long id) {
         Organization org = dao.loadById(id);
-        OrganizationView view = new OrganizationView();
-        view.id = org.getId();
-        view.name = org.getName();
-        view.fullName = org.getFullName();
-        view.inn = org.getInn();
-        view.kpp = org.getKpp();
-        view.address = org.getAddress();
-        view.phone = org.getPhone();
+        OrganizationView view = mapperFacade.map(org, OrganizationView.class);
         view.isActive = org.getActive();
         return view;
     }

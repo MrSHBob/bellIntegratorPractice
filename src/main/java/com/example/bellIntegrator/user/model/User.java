@@ -1,6 +1,6 @@
 package com.example.bellIntegrator.user.model;
 
-import com.example.bellIntegrator.countrie.model.Countrie;
+import com.example.bellIntegrator.country.model.Country;
 import com.example.bellIntegrator.office.model.Office;
 import com.example.bellIntegrator.user.userDoc.model.UsersDoc;
 
@@ -42,7 +42,7 @@ public class User {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "citizenship_id")
-    private Countrie citizenship;
+    private Country citizenship;
 
     @Column(name = "is_identified")
     private Boolean isIdentified;
@@ -111,11 +111,11 @@ public class User {
         this.userDoc = userDoc;
     }
 
-    public Countrie getCitizenship() {
+    public Country getCitizenship() {
         return citizenship;
     }
 
-    public void setCitizenship(Countrie citizenship) {
+    public void setCitizenship(Country citizenship) {
         this.citizenship = citizenship;
     }
 

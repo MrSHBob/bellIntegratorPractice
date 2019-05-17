@@ -24,5 +24,5 @@ public class UserViewListIn {
 
     public Integer docCod;
 
-    public String citizenshipId;
+    public Integer citizenshipCode;
 }

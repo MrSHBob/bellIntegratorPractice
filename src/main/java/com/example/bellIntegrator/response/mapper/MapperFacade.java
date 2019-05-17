@@ -1,4 +1,4 @@
-package com.example.bellIntegrator.additionalLogic.mapper;
+package com.example.bellIntegrator.response.mapper;
 
 import java.util.List;
 

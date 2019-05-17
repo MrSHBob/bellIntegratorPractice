@@ -3,7 +3,7 @@ package com.example.bellIntegrator.doc.service;
 import com.example.bellIntegrator.doc.dao.DocDao;
 import com.example.bellIntegrator.doc.model.Doc;
 import com.example.bellIntegrator.doc.view.DocViewSave;
-import com.example.bellIntegrator.additionalLogic.mapper.MapperFacade;
+import com.example.bellIntegrator.response.mapper.MapperFacade;
 import com.example.bellIntegrator.doc.view.DocView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Сервис, передающий запросы из контроллера в DAO для документа.
+ */
 @Service
 public class DocServiceImpl implements DocService {
     private final DocDao dao;
@@ -22,6 +25,9 @@ public class DocServiceImpl implements DocService {
         this.mapperFacade = mapperFacade;
     }
 
+    /**
+     * Добавление нового документа.
+     */
     @Override
     @Transactional
     public void add(DocViewSave view) {
@@ -31,6 +37,9 @@ public class DocServiceImpl implements DocService {
         dao.save(doc);
     }
 
+    /**
+     * Возвращение списка всех документов.
+     */
     @Override
     @Transactional
     public List<DocView> docs() {
