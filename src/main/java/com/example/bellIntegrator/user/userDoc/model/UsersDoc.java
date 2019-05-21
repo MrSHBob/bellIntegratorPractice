@@ -32,6 +32,7 @@ public class UsersDoc {
     private String docNumber;
 
     @Column(name = "doc_date")
+    @Temporal(TemporalType.DATE)
     private Date docDate;
 
     public Long getId() {
