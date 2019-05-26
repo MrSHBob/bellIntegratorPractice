@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 public class UserViewListOut {
 
-    public String id;
+    public Long id;
 
     public String firstName;
 

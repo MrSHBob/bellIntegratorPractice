@@ -30,7 +30,11 @@ public class CountryDaoImpl implements CountryDao {
      */
     @Override
     public List<Country> all() {
-        TypedQuery<Country> query = em.createQuery("SELECT c FROM Countrie c", Country.class);
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Country> criteriaQuery = criteriaBuilder.createQuery(Country.class);
+        Root<Country> countrie = criteriaQuery.from(Country.class);
+        criteriaQuery.select(countrie);
+        TypedQuery<Country> query = em.createQuery(criteriaQuery);
         return query.getResultList();
     }
 

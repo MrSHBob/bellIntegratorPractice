@@ -67,13 +67,13 @@ public class UserDaoImpl implements UserDao {
         if (view.firstName.length() > 0) {
             predicates.add(criteriaBuilder.equal(user.get("firstName"), view.firstName));
         }
-        if (view.secondName.length() > 0) {
+        if (view.secondName != null && view.secondName.length() > 0) {
             predicates.add(criteriaBuilder.equal(user.get("secondName"), view.secondName));
         }
-        if (view.middleName.length() > 0) {
+        if (view.middleName != null && view.middleName.length() > 0) {
             predicates.add(criteriaBuilder.equal(user.get("middleName"), view.middleName));
         }
-        if (view.position.length() > 0) {
+        if (view.position != null && view.position.length() > 0) {
             predicates.add(criteriaBuilder.equal(user.get("position"), view.position));
         }
 // first way of query

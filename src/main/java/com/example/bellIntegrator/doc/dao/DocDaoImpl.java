@@ -30,7 +30,11 @@ public class DocDaoImpl implements DocDao {
      */
     @Override
     public List<Doc> all() {
-        TypedQuery<Doc> query = em.createQuery("SELECT d FROM Doc d", Doc.class);
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Doc> criteriaQuery = criteriaBuilder.createQuery(Doc.class);
+        Root<Doc> doc = criteriaQuery.from(Doc.class);
+        criteriaQuery.select(doc);
+        TypedQuery<Doc> query = em.createQuery(criteriaQuery);
         return query.getResultList();
     }
 

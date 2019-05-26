@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 public class OfficeViewListOut {
 
-    public String id;
+    public Long id;
 
     public String name;
 
