@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class UserViewUpdate {
 
-    @NotNull (message = "officeId is required field")
+    @NotNull (message = "Id is required field")
     public Long id;
 
     public Long officeId;

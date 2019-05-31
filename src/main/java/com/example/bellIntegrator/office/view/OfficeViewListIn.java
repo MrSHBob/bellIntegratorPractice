@@ -11,7 +11,7 @@ public class OfficeViewListIn {
     @Size (max = 50, message = "name max size 50")
     public String name;
 
-    @Size (max = 15, message = "phone max size 50")
+    @Size (max = 15, message = "phone max size 15")
     public String phone;
 
     public Boolean isActive;

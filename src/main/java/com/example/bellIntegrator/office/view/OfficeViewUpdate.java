@@ -16,10 +16,10 @@ public class OfficeViewUpdate {
     public String name;
 
     @NotEmpty (message = "address is required field")
-    @Size (max = 100, message = "address max size 50")
+    @Size (max = 100, message = "address max size 100")
     public String address;
 
-    @Size (max = 15, message = "phone max size 50")
+    @Size (max = 15, message = "phone max size 15")
     public String phone;
 
     public Boolean isActive;

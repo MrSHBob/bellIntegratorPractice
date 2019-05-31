@@ -4,6 +4,7 @@ import com.example.bellIntegrator.response.view.SuccessView;
 import com.example.bellIntegrator.organization.service.OrganizationService;
 import com.example.bellIntegrator.organization.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

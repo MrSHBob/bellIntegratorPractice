@@ -25,7 +25,7 @@ public interface OrganizationService {
     /**
      * Фильтр организаций.
      */
-    List<OrganizationViewListOut> organizationFilter(OrganizationViewListIn view);
+    List<OrganizationViewListOut> organizationFilter(@Valid OrganizationViewListIn view);
 
     /**
      * Возвращает организацию по id.

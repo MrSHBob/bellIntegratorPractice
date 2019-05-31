@@ -25,7 +25,7 @@ public interface UserService {
     /**
      * Фильтр юзеров.
      */
-    List<UserViewListOut> userFilter(UserViewListIn view);
+    List<UserViewListOut> userFilter(@Valid UserViewListIn view);
 
     /**
      * Возвращает юзера по id.

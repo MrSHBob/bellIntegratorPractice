@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -86,11 +87,19 @@ public class UserServiceImpl implements UserService {
                 user.getUserDoc().setDocDate(view.docDate);
             } else {
                 UsersDoc userDoc = new UsersDoc();
-                userDoc.setDoc(docDao.findByName(view.docName));
-                userDoc.setDocNumber(view.docNumber);
-                userDoc.setDocDate(view.docDate);
-                userDoc.setUser(user);
-                user.setUserDoc(userDoc);
+                Doc doc;
+                try {
+                    doc= docDao.findByName(view.docName);
+                    if (doc != null) {
+                        userDoc.setDoc(doc);
+                        userDoc.setDocNumber(view.docNumber);
+                        userDoc.setDocDate(view.docDate);
+                        userDoc.setUser(user);
+                        user.setUserDoc(userDoc);
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException("wrong docName");
+                }
             }
         }
         if (view.citizenshipCode != null && view.citizenshipCode > 0) {
@@ -104,7 +113,7 @@ public class UserServiceImpl implements UserService {
      * Фильтр юзеров.
      */
     @Override
-    public List<UserViewListOut> userFilter(UserViewListIn view) {
+    public List<UserViewListOut> userFilter(@Valid UserViewListIn view) {
         List<User> users = dao.userFilter(view);
         return mapperFacade.mapAsList(users, UserViewListOut.class);
     }
@@ -115,6 +124,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserViewGet userById(Long id) {
         User user = dao.loadById(id);
+        if (user == null) {
+            throw new NullPointerException();
+        }
         UserViewGet view = new UserViewGet();
         mapperFacade.map(user, view);
         if (user.getUserDoc() != null) {

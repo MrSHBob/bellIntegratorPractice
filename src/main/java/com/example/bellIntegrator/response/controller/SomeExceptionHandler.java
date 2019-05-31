@@ -20,7 +20,7 @@ public class SomeExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ErrorView handleException (Exception e) {
         ErrorView errorView = new ErrorView();
-        errorView.error = "some mystery error";
+        errorView.error = e.getMessage();
         return errorView;
     }
 

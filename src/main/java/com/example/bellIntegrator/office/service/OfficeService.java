@@ -25,7 +25,7 @@ public interface OfficeService {
     /**
      * Фильтр офисов по организации и др. полям.
      */
-    List<OfficeViewListOut> officeFilter(OfficeViewListIn view);
+    List<OfficeViewListOut> officeFilter(@Valid OfficeViewListIn view);
 
     /**
      * Возвращает офис по id.

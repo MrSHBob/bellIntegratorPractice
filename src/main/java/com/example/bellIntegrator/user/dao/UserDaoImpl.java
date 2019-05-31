@@ -64,7 +64,7 @@ public class UserDaoImpl implements UserDao {
         Root<User> user = criteriaQuery.from(User.class);
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(criteriaBuilder.equal(user.get("office"),view.officeId));
-        if (view.firstName.length() > 0) {
+        if (view.firstName !=null && view.firstName.length() > 0) {
             predicates.add(criteriaBuilder.equal(user.get("firstName"), view.firstName));
         }
         if (view.secondName != null && view.secondName.length() > 0) {
@@ -77,8 +77,8 @@ public class UserDaoImpl implements UserDao {
             predicates.add(criteriaBuilder.equal(user.get("position"), view.position));
         }
 // first way of query
-        if (view.docCod != null) {
-            predicates.add(criteriaBuilder.equal(user.get("userDoc").get("doc").get("code"), view.docCod));
+        if (view.docCode != null) {
+            predicates.add(criteriaBuilder.equal(user.get("userDoc").get("doc").get("code"), view.docCode));
         }
 //second way of query, which better?
         if (view.citizenshipCode != null) {

@@ -38,7 +38,7 @@ public class OfficeDaoImpl implements OfficeDao {
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(criteriaBuilder.equal(office.get("organization"), view.orgId));
         if (view.name.length() > 0) {
-            predicates.add(criteriaBuilder.equal(office.get("name"), view.name));
+            predicates.add(criteriaBuilder.like(office.get("name"), "%" + view.name + "%"));
         }
         if (view.phone.length() > 0) {
             predicates.add(criteriaBuilder.equal(office.get("phone"), view.phone));

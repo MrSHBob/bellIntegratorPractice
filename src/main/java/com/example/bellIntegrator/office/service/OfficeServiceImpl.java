@@ -33,7 +33,7 @@ public class OfficeServiceImpl implements OfficeService {
      */
     @Override
     @Transactional
-    public void add(OfficeViewSave view) {
+    public void add(@Valid OfficeViewSave view) {
         Office office = new Office();
         mapperFacade.map(view, office);
         office.setOrganization(orgDao.loadById(view.orgId));
@@ -57,7 +57,7 @@ public class OfficeServiceImpl implements OfficeService {
      * Фильтр офисов по организации и др. полям.
      */
     @Override
-    public List<OfficeViewListOut> officeFilter(OfficeViewListIn view) {
+    public List<OfficeViewListOut> officeFilter(@Valid OfficeViewListIn view) {
         List<Office> offices = dao.officeFilter(view);
         return mapperFacade.mapAsList(offices, OfficeViewListOut.class);
     }

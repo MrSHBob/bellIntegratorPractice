@@ -53,7 +53,7 @@ public class OrganizationServiceImpl implements OrganizationService {
      * Фильтр организаций.
      */
     @Override
-    public List<OrganizationViewListOut> organizationFilter(OrganizationViewListIn view) {
+    public List<OrganizationViewListOut> organizationFilter(@Valid OrganizationViewListIn view) {
         List<Organization> organizations = dao.organizationFilter(view);
         return mapperFacade.mapAsList(organizations, OrganizationViewListOut.class);
     }
