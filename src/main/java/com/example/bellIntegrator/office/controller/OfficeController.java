@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
-
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -37,8 +35,7 @@ public class OfficeController {
      */
     @PostMapping("/list")
     public List<OfficeViewListOut> officeFilter (@RequestBody OfficeViewListIn view) {
-        List<OfficeViewListOut> views = officeService.officeFilter(view);
-        return views;
+        return officeService.officeFilter(view);
     }
 
     /**
@@ -46,8 +43,7 @@ public class OfficeController {
      */
     @RequestMapping(value = "/{id:[\\d]+}", method = GET)
     public OfficeViewGet officeById (@PathVariable("id") Long id) {
-        OfficeViewGet view = officeService.officeById(id);
-        return view;
+        return officeService.officeById(id);
     }
 
     /**

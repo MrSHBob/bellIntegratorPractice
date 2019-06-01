@@ -5,7 +5,6 @@ import com.example.bellIntegrator.user.model.User;
 import com.example.bellIntegrator.user.view.UserViewListIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -20,7 +19,6 @@ import java.util.List;
  */
 @Repository
 public class UserDaoImpl implements UserDao {
-
     private final EntityManager em;
     private final CountryDaoImpl countryDao;
 

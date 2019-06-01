@@ -6,7 +6,6 @@ import com.example.bellIntegrator.office.view.OfficeViewListOut;
 import com.example.bellIntegrator.office.view.OfficeViewSave;
 import com.example.bellIntegrator.office.view.OfficeViewUpdate;
 import org.springframework.validation.annotation.Validated;
-
 import javax.validation.Valid;
 import java.util.List;
 

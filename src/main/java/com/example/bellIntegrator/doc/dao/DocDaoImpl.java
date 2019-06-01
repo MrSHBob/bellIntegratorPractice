@@ -3,7 +3,6 @@ package com.example.bellIntegrator.doc.dao;
 import com.example.bellIntegrator.doc.model.Doc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,7 +16,6 @@ import java.util.List;
  */
 @Repository
 public class DocDaoImpl implements DocDao {
-
     private final EntityManager em;
 
     @Autowired

@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
-
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
@@ -20,7 +18,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(value = "/api/docs", produces = APPLICATION_JSON_VALUE)
 public class DocController {
-
     private final DocService docService;
 
     @Autowired

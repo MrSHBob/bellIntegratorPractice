@@ -1,13 +1,16 @@
 package com.example.bellIntegrator.user.service;
 
-import com.example.bellIntegrator.user.view.*;
+import com.example.bellIntegrator.user.view.UserViewGet;
+import com.example.bellIntegrator.user.view.UserViewListIn;
+import com.example.bellIntegrator.user.view.UserViewListOut;
+import com.example.bellIntegrator.user.view.UserViewSave;
+import com.example.bellIntegrator.user.view.UserViewUpdate;
 import org.springframework.validation.annotation.Validated;
-
 import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Интерфейс сервиса, передающего запросы из контроллера в DAO для юзера.
+ * Интерфейс сервиса для юзера.
  */
 @Validated
 public interface UserService {

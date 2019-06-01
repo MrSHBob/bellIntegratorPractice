@@ -8,7 +8,7 @@ import com.example.bellIntegrator.doc.view.DocView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -30,7 +30,7 @@ public class DocServiceImpl implements DocService {
      */
     @Override
     @Transactional
-    public void add(DocViewSave view) {
+    public void add(@Valid DocViewSave view) {
         Doc doc = new Doc();
         doc.setCode(view.code);
         doc.setName(view.name);

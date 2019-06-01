@@ -1,12 +1,18 @@
 package com.example.bellIntegrator.user.controller;
 
 import com.example.bellIntegrator.user.service.UserService;
-import com.example.bellIntegrator.user.view.*;
+import com.example.bellIntegrator.user.view.UserViewGet;
+import com.example.bellIntegrator.user.view.UserViewListIn;
+import com.example.bellIntegrator.user.view.UserViewListOut;
+import com.example.bellIntegrator.user.view.UserViewSave;
+import com.example.bellIntegrator.user.view.UserViewUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
-
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -16,7 +22,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 @RequestMapping(value = "/api/user", produces = APPLICATION_JSON_VALUE)
 public class UserController {
-
     private final UserService userService;
 
     @Autowired

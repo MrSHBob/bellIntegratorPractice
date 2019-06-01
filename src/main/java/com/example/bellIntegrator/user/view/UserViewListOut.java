@@ -1,19 +1,32 @@
 package com.example.bellIntegrator.user.view;
 
-import com.example.bellIntegrator.office.model.Office;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
+/**
+ * Представление юзера для преобразования в json
+ */
 public class UserViewListOut {
 
+    /**
+     * идентификатор
+     */
     public Long id;
 
+    /**
+     * имя
+     */
     public String firstName;
 
+    /**
+     * фамилия
+     */
     public String secondName;
 
+    /**
+     * отчество
+     */
     public String middleName;
 
+    /**
+     * должность
+     */
     public String position;
 }

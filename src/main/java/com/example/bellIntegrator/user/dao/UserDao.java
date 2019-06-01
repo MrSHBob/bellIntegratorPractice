@@ -2,7 +2,6 @@ package com.example.bellIntegrator.user.dao;
 
 import com.example.bellIntegrator.user.model.User;
 import com.example.bellIntegrator.user.view.UserViewListIn;
-
 import java.util.List;
 
 /**

@@ -7,17 +7,20 @@ import com.example.bellIntegrator.office.dao.OfficeDao;
 import com.example.bellIntegrator.user.dao.UserDao;
 import com.example.bellIntegrator.user.model.User;
 import com.example.bellIntegrator.response.mapper.MapperFacade;
-import com.example.bellIntegrator.user.view.*;
 import com.example.bellIntegrator.user.userDoc.model.UsersDoc;
+import com.example.bellIntegrator.user.view.UserViewGet;
+import com.example.bellIntegrator.user.view.UserViewListIn;
+import com.example.bellIntegrator.user.view.UserViewListOut;
+import com.example.bellIntegrator.user.view.UserViewSave;
+import com.example.bellIntegrator.user.view.UserViewUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Сервис, передающий запросы из контроллера в DAO для юзера.
+ * Сервис для юзера.
  */
 @Service
 public class UserServiceImpl implements UserService {

@@ -2,7 +2,6 @@ package com.example.bellIntegrator.office.dao;
 
 import com.example.bellIntegrator.office.model.Office;
 import com.example.bellIntegrator.office.view.OfficeViewListIn;
-
 import java.util.List;
 
 /**

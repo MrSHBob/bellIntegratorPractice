@@ -2,10 +2,8 @@ package com.example.bellIntegrator.organization.dao;
 
 import com.example.bellIntegrator.organization.model.Organization;
 import com.example.bellIntegrator.organization.view.OrganizationViewListIn;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -20,7 +18,6 @@ import java.util.List;
  */
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {
-
     private final EntityManager em;
 
     @Autowired
@@ -46,7 +43,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
         Root<Organization> organization = criteriaQuery.from(Organization.class);
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(criteriaBuilder.like(organization.get("name"),"%" + view.name + "%"));
-        if (view.inn.length() > 0) {
+        if (view.inn != null && view.inn.length() > 0) {
             predicates.add(criteriaBuilder.equal(organization.get("inn"),view.inn));
         }
         criteriaQuery.where(predicates.toArray(new Predicate[] {}));

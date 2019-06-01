@@ -4,7 +4,6 @@ import com.example.bellIntegrator.office.model.Office;
 import com.example.bellIntegrator.office.view.OfficeViewListIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -37,10 +36,10 @@ public class OfficeDaoImpl implements OfficeDao {
         Root<Office> office = criteriaQuery.from(Office.class);
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(criteriaBuilder.equal(office.get("organization"), view.orgId));
-        if (view.name.length() > 0) {
+        if (view.name != null && view.name.length() > 0) {
             predicates.add(criteriaBuilder.like(office.get("name"), "%" + view.name + "%"));
         }
-        if (view.phone.length() > 0) {
+        if (view.phone != null && view.phone.length() > 0) {
             predicates.add(criteriaBuilder.equal(office.get("phone"), view.phone));
         }
         criteriaQuery.where(predicates.toArray(new Predicate[]{}));

@@ -2,7 +2,6 @@ package com.example.bellIntegrator.organization.dao;
 
 import com.example.bellIntegrator.organization.model.Organization;
 import com.example.bellIntegrator.organization.view.OrganizationViewListIn;
-
 import java.util.List;
 
 /**

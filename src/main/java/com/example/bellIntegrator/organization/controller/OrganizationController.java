@@ -1,14 +1,18 @@
 package com.example.bellIntegrator.organization.controller;
 
-import com.example.bellIntegrator.response.view.SuccessView;
 import com.example.bellIntegrator.organization.service.OrganizationService;
-import com.example.bellIntegrator.organization.view.*;
+import com.example.bellIntegrator.organization.view.OrganizationView;
+import com.example.bellIntegrator.organization.view.OrganizationViewListIn;
+import com.example.bellIntegrator.organization.view.OrganizationViewListOut;
+import com.example.bellIntegrator.organization.view.OrganizationViewSave;
+import com.example.bellIntegrator.organization.view.OrganizationViewUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
-
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -18,7 +22,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 @RequestMapping(value = "/api/organization", produces = APPLICATION_JSON_VALUE)
 public class OrganizationController {
-
     private final OrganizationService organizationService;
 
     @Autowired

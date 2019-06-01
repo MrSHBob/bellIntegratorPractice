@@ -50,10 +50,10 @@ CREATE TABLE IF NOT EXISTS user (
     id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
     version             INTEGER NOT NULL        COMMENT 'Служебное поле hibernate',
     office_id           BIGINT NOT NULL         COMMENT 'Идентификатор офиса',
-    first_name          VARCHAR(30)             COMMENT 'Имя',
+    first_name          VARCHAR(30) NOT NULL    COMMENT 'Имя',
     second_name         VARCHAR(30)             COMMENT 'Фамилия',
     middle_name         VARCHAR(30)             COMMENT 'Отчество',
-    position            VARCHAR(50)             COMMENT 'Должность',
+    position            VARCHAR(50) NOT NULL    COMMENT 'Должность',
     phone               VARCHAR(15)             COMMENT 'Телефон юзера',
     citizenship_id      BIGINT                  COMMENT 'Гражданство - id',
     is_identified       BIT                     COMMENT 'Документ подтвержден'
