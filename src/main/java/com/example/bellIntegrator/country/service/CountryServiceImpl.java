@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Сервис, передающий запросы из контроллера в DAO для страны.
+ * Сервис для страны.
  */
 @Service
 public class CountryServiceImpl implements CountryService {

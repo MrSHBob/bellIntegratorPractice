@@ -4,14 +4,18 @@ import com.example.bellIntegrator.doc.service.DocService;
 import com.example.bellIntegrator.doc.view.DocView;
 import com.example.bellIntegrator.doc.view.DocViewSave;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
- * Контроллер для обработки запросов по Перечню документов
+ * Контроллер для обработки запросов по документам
  */
 @RestController
 @RequestMapping(value = "/api/docs", produces = APPLICATION_JSON_VALUE)

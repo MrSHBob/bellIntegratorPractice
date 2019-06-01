@@ -1,11 +1,17 @@
 package com.example.bellIntegrator.doc.view;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
+/**
+ * Представление документа для преобразования в json
+ */
 public class DocView {
 
+    /**
+     * код документа
+     */
     public Integer code;
 
+    /**
+     * название документа
+     */
     public String name;
 }

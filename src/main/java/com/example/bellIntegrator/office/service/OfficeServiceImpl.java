@@ -2,18 +2,21 @@ package com.example.bellIntegrator.office.service;
 
 import com.example.bellIntegrator.office.dao.OfficeDao;
 import com.example.bellIntegrator.office.model.Office;
-import com.example.bellIntegrator.office.view.*;
+import com.example.bellIntegrator.office.view.OfficeViewGet;
+import com.example.bellIntegrator.office.view.OfficeViewListIn;
+import com.example.bellIntegrator.office.view.OfficeViewListOut;
+import com.example.bellIntegrator.office.view.OfficeViewSave;
+import com.example.bellIntegrator.office.view.OfficeViewUpdate;
 import com.example.bellIntegrator.organization.dao.OrganizationDao;
 import com.example.bellIntegrator.response.mapper.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Сервис, передающий запросы из контроллера в DAO для офиса.
+ * Сервис офиса.
  */
 @Service
 public class OfficeServiceImpl implements OfficeService {
@@ -72,5 +75,4 @@ public class OfficeServiceImpl implements OfficeService {
         view.isActive = office.getActive();
         return view;
     }
-
 }

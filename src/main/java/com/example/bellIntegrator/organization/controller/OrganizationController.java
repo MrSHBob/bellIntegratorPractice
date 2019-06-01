@@ -31,8 +31,7 @@ public class OrganizationController {
      */
     @PostMapping("/list")
     public List<OrganizationViewListOut> list (@RequestBody OrganizationViewListIn view) {
-        List<OrganizationViewListOut> orgViews = organizationService.organizationFilter(view);
-        return orgViews;
+        return organizationService.organizationFilter(view);
     }
 
     /**
@@ -40,8 +39,7 @@ public class OrganizationController {
      */
     @RequestMapping(value = "/{id:[\\d]+}", method = GET)
     public OrganizationView orgById (@PathVariable("id") Long orgId) {
-        OrganizationView orgView = organizationService.organizationsById(orgId);
-        return orgView;
+        return organizationService.organizationsById(orgId);
     }
 
     /**

@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Интерфейс сервиса, передающего запросы из контроллера в DAO для документа.
+ * Интерфейс сервиса для документа.
  */
 @Validated
 public interface DocService {

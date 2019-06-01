@@ -1,13 +1,17 @@
 package com.example.bellIntegrator.office.service;
 
-import com.example.bellIntegrator.office.view.*;
+import com.example.bellIntegrator.office.view.OfficeViewGet;
+import com.example.bellIntegrator.office.view.OfficeViewListIn;
+import com.example.bellIntegrator.office.view.OfficeViewListOut;
+import com.example.bellIntegrator.office.view.OfficeViewSave;
+import com.example.bellIntegrator.office.view.OfficeViewUpdate;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Интерфейс сервиса, передающего запросы из контроллера в DAO для офиса.
+ * Интерфейс сервиса офиса.
  */
 @Validated
 public interface OfficeService {

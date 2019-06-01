@@ -3,7 +3,6 @@ package com.example.bellIntegrator.country.dao;
 import com.example.bellIntegrator.country.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;

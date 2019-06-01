@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Интерфейс сервиса, передающего запросы из контроллера в DAO для страны.
+ * Интерфейс сервиса страны.
  */
 @Validated
 public interface CountryService {
@@ -16,7 +16,7 @@ public interface CountryService {
     /**
      * Добавление новой страны.
      */
-    void add (@Valid CountryViewSave countrie);
+    void add (@Valid CountryViewSave country);
 
     /**
      * Возвращение списка всех стран.
