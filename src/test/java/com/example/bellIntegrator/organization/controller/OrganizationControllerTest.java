@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,6 +32,14 @@ public class OrganizationControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Test
+    @Transactional
+    public void allTests () throws Exception {
+        this.organizationSaveGetTest();
+        this.organizationUpdateTest();
+        this.orgFilterTest();
+    }
 
     @Test
     public void organizationSaveGetTest () throws Exception {

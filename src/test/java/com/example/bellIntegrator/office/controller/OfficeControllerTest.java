@@ -1,10 +1,11 @@
 package com.example.bellIntegrator.office.controller;
 
 import com.example.bellIntegrator.BellIntegratorApplication;
-import com.example.bellIntegrator.office.model.Office;
-import com.example.bellIntegrator.office.view.*;
-import com.example.bellIntegrator.organization.controller.OrganizationController;
+import com.example.bellIntegrator.office.view.OfficeViewListIn;
+import com.example.bellIntegrator.office.view.OfficeViewSave;
+import com.example.bellIntegrator.office.view.OfficeViewUpdate;
 import com.example.bellIntegrator.organization.view.OrganizationViewSave;
+import com.example.bellIntegrator.response.view.DataView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,13 +15,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.Assert.*;
+import java.util.LinkedHashMap;
+import java.util.List;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BellIntegratorApplication.class)
@@ -32,18 +33,38 @@ public class OfficeControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @Transactional
+    public void allTests () throws Exception {
+        this.officeSaveGetTest();
+        this.officeUpdateTest();
+        this.officeFilterTest();
+    }
+
+    @Test
+    @Transactional
     public void officeSaveGetTest () throws Exception {
         saveOrg();
+        //save office
         OfficeViewSave request = new OfficeViewSave();
         request.orgId = 1L;
         request.name = "Some office";
         String requestJson = mapper.writeValueAsString(request);
         this.mockMvc.perform(post("/api/office/save").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-                .andExpect(jsonPath("$.result").value("success"))
-                .andDo(mvcResult -> {
-                   this.mockMvc.perform(get("/api/office/1"))
-                           .andExpect(jsonPath("$.data.name").value("Some office"));
-                });
+                .andExpect(jsonPath("$.result").value("success"));
+        //get id from office just saved
+        OfficeViewListIn ovli = new OfficeViewListIn();
+        ovli.orgId = 1L;
+        ovli.name = request.name;
+        String ovliJson = mapper.writeValueAsString(ovli);
+        MvcResult mvcResult = this.mockMvc.perform(post("/api/office/list").contentType(MediaType.APPLICATION_JSON).content(ovliJson))
+                .andReturn();
+        String resultString = mvcResult.getResponse().getContentAsString();
+        DataView dataView = mapper.readValue(resultString, DataView.class);
+        List<Object> listOuts = (List<Object>) dataView.data;
+        LinkedHashMap<String, Object> linkedHashMap = (LinkedHashMap<String, Object>)listOuts.get(0);
+        //get office by id
+        this.mockMvc.perform(get("/api/office/" + linkedHashMap.get("id")))
+                .andExpect(jsonPath("$.data.name").value(request.name));
 
         //wrong save param
         request.orgId = null;

@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,6 +30,13 @@ public class CountryControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Test
+    @Transactional
+    public void allTests () throws Exception {
+        this.countryAddTest();
+        this.countryGetAllTest();
+    }
 
     @Test
     public void countryAddTest () throws Exception {

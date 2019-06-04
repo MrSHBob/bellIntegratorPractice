@@ -5,6 +5,7 @@ import com.example.bellIntegrator.country.view.CountryViewSave;
 import com.example.bellIntegrator.doc.view.DocViewSave;
 import com.example.bellIntegrator.office.view.OfficeViewSave;
 import com.example.bellIntegrator.organization.view.OrganizationViewSave;
+import com.example.bellIntegrator.response.view.DataView;
 import com.example.bellIntegrator.user.view.UserViewListIn;
 import com.example.bellIntegrator.user.view.UserViewSave;
 import com.example.bellIntegrator.user.view.UserViewUpdate;
@@ -17,9 +18,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.sql.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -33,6 +36,16 @@ public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Test
+    //@Transactional
+    //неведомо почему с транзакцией не пашет
+    public void allTests() throws Exception {
+        this.userSaveGetTest();
+        this.fullSavedUserUpdateTest();
+        this.lowSavedUserUpdateTest();
+        this.userFilterTest();
+    }
 
     @Test
     @Transactional
@@ -124,11 +137,24 @@ public class UserControllerTest {
     @Transactional
     public void fullSavedUserUpdateTest() throws Exception {
         UserViewSave requestSave = getUserFullSave();
+        requestSave.firstName = "Вася";
         String requestJson = mapper.writeValueAsString(requestSave);
         this.mockMvc.perform(post("/api/user/save").contentType(MediaType.APPLICATION_JSON).content(requestJson));
 
+        //получаем id сохраненного юзера
+        UserViewListIn uvli = new UserViewListIn();
+        uvli.officeId = 1L;
+        uvli.firstName = "Вася";
+        String uvliJson = mapper.writeValueAsString(uvli);
+        MvcResult mvcRez = this.mockMvc.perform(post("/api/user/list").contentType(MediaType.APPLICATION_JSON).content(uvliJson))
+                .andReturn();
+        String resultString = mvcRez.getResponse().getContentAsString();
+        DataView dataView = mapper.readValue(resultString, DataView.class);
+        List<Object> listOuts = (List<Object>) dataView.data;
+        LinkedHashMap<String, Object> linkedHashMap = (LinkedHashMap<String, Object>)listOuts.get(0);
+        //update user by taken id
         UserViewUpdate request = new UserViewUpdate();
-        request.id = 1L;
+        request.id = Long.valueOf((Integer)linkedHashMap.get("id"));
         request.officeId = 1L;
         request.firstName = "Александр";
         request.secondName = "Александров";
@@ -143,7 +169,7 @@ public class UserControllerTest {
         this.mockMvc.perform(post("/api/user/update").contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(jsonPath("$.result").value("success"))
                 .andDo(mvcResult -> {
-                    this.mockMvc.perform(get("/api/user/1"))
+                    this.mockMvc.perform(get("/api/user/" + linkedHashMap.get("id")))
                             .andExpect(jsonPath("$.data.firstName").value(request.firstName))
                             .andExpect(jsonPath("$.data.citizenshipName").value("USA"))
                             //.andExpect(jsonPath("$.data.docDate").value(request.docDate))
@@ -213,11 +239,23 @@ public class UserControllerTest {
     @Transactional
     public void lowSavedUserUpdateTest() throws Exception {
         UserViewSave requestS = getUserLowSave();
+        requestS.firstName = "Кирюша";
         String requestJson = mapper.writeValueAsString(requestS);
         this.mockMvc.perform(post("/api/user/save").contentType(MediaType.APPLICATION_JSON).content(requestJson));
 
+        UserViewListIn uvli = new UserViewListIn();
+        uvli.officeId = 1L;
+        uvli.firstName = "Кирюша";
+        String uvliJson = mapper.writeValueAsString(uvli);
+        MvcResult mvcRez = this.mockMvc.perform(post("/api/user/list").contentType(MediaType.APPLICATION_JSON).content(uvliJson))
+                .andReturn();
+        String resultString = mvcRez.getResponse().getContentAsString();
+        DataView dataView = mapper.readValue(resultString, DataView.class);
+        List<Object> listOuts = (List<Object>) dataView.data;
+        LinkedHashMap<String, Object> linkedHashMap = (LinkedHashMap<String, Object>)listOuts.get(0);
+
         UserViewUpdate request = new UserViewUpdate();
-        request.id = 1L;
+        request.id = Long.valueOf((Integer)linkedHashMap.get("id"));
         request.officeId = 1L;
         request.firstName = "Александр";
         request.secondName = "Александров";
@@ -240,7 +278,7 @@ public class UserControllerTest {
         this.mockMvc.perform(post("/api/user/update").contentType(MediaType.APPLICATION_JSON).content(requestJson))
                 .andExpect(jsonPath("$.result").value("success"))
                 .andDo(mvcResult -> {
-                    this.mockMvc.perform(get("/api/user/1"))
+                    this.mockMvc.perform(get("/api/user/" + linkedHashMap.get("id")))
                             .andExpect(jsonPath("$.data.firstName").value(request.firstName))
                             .andExpect(jsonPath("$.data.citizenshipName").value("USA"))
                             .andExpect(jsonPath("$.data.docNumber").value(request.docNumber));
